@@ -22,28 +22,9 @@ public class App {
         jFrame.setResizable(false);
         jFrame.setLocationRelativeTo(null);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        addMenuBar(jFrame);
+        jFrame.setJMenuBar(new CustomMenuBar(jFrame));
         addComponents(jFrame);
         jFrame.setVisible(true);
-    }
-
-    private static void addMenuBar(JFrame jFrame) {
-        CustomMenu helpMenu = new CustomMenu(
-                "Help Menu",
-                new NewFeaturesMenuItem(jFrame),
-                new FAQMenuItem(jFrame),
-                new ContactMenuItem(jFrame)
-        );
-
-        CustomMenu advancedOptionsMenu = new CustomMenu(
-                "Advanced Options",
-                new AdvancedModeCheckBoxMenuItem(jFrame)
-        );
-
-        JMenuBar jMenuBar = new JMenuBar();
-        jMenuBar.add(helpMenu);
-        jMenuBar.add(advancedOptionsMenu);
-        jFrame.setJMenuBar(jMenuBar);
     }
 
     private static void addComponents(JFrame jFrame) {
