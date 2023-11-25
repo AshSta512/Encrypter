@@ -1,6 +1,6 @@
 package net.ashsta.menu;
 
-import net.ashsta.App;
+import net.ashsta.Cosmetic;
 import net.ashsta.interfaces.AdvancedComponent;
 
 import javax.swing.*;
@@ -12,12 +12,12 @@ public class AdvancedModeCheckBoxMenuItem extends JCheckBoxMenuItem {
     private static final Set<AdvancedComponent> ADVANCED_COMPONENTS = new HashSet<>();
 
     public AdvancedModeCheckBoxMenuItem(JFrame jFrame) {
-        this.setText("Advanced Mode");
-        this.setFont(App.MENU_BAR_FONT);
-        this.addActionListener(e -> {
+        setText("Advanced Mode");
+        setFont(Cosmetic.MENU_BAR_FONT);
+        addActionListener(e -> {
             boolean state = getState();
             JLabel jLabel = new JLabel("Are you sure you want to " + (state ? "enable" : "disable") + " advanced mode?");
-            jLabel.setFont(App.POPOUT_BOX_FONT);
+            jLabel.setFont(Cosmetic.POPOUT_BOX_FONT);
             int option = JOptionPane.showConfirmDialog(jFrame, jLabel, "Advanced Mode Confirmation", JOptionPane.YES_NO_OPTION);
             if (option == JOptionPane.NO_OPTION) {
                 setState(!state);

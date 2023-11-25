@@ -1,18 +1,20 @@
-package net.ashsta.components;
+package net.ashsta.components.buttons;
 
-import net.ashsta.App;
 import net.ashsta.Encryption;
+import net.ashsta.components.InputScrollPane;
+import net.ashsta.components.OutputHistoryPanel;
+import net.ashsta.components.PasswordField;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class DecryptButton extends JButton {
+public class DecryptButton extends CustomButton {
+
+    private static final Dimension SIZE = new Dimension(128 + 48, 64);
+    private static final Color BACKGROUND_COLOR = Color.GREEN;
 
     public DecryptButton(JFrame jFrame, InputScrollPane inputScrollPane, PasswordField passwordField, OutputHistoryPanel outputHistoryPanel) {
-        setMaximumSize(new Dimension(128 + 48, 64));
-        setFont(App.BUTTON_FONT);
-        setText("Decrypt");
-        setBackground(Color.GREEN);
+        super("Decrypt", BIG_BUTTON_FONT, SIZE, BACKGROUND_COLOR);
         addActionListener(e -> {
             String input = inputScrollPane.getTextArea().getText();
             String password = new String(passwordField.getPassword());

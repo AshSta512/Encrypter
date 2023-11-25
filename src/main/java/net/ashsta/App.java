@@ -1,21 +1,19 @@
 package net.ashsta;
 
 import net.ashsta.components.*;
+import net.ashsta.components.buttons.DecryptButton;
+import net.ashsta.components.buttons.EncryptButton;
+import net.ashsta.components.buttons.GeneratePasswordButton;
+import net.ashsta.components.buttons.ShowPasswordButton;
 import net.ashsta.menu.AdvancedModeCheckBoxMenuItem;
+import net.ashsta.menu.CustomMenu;
 import net.ashsta.menu.CustomTextMenuItem;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.net.URL;
 
 public class App {
-
-    public static final Font FONT = new Font("Default", Font.PLAIN, 24);
-    public static final Font BUTTON_FONT = new Font("Default", Font.BOLD, 32);
-    public static final Font POPOUT_BOX_FONT = new Font("Default", Font.PLAIN, 24);
-    public static final Font MENU_BAR_FONT = new Font("Default", Font.PLAIN, 20);
-    public static final Border BORDER = BorderFactory.createLineBorder(Color.black);
 
     public static void main(String[] args) {
         JFrame jFrame = new JFrame("Encrypter");
@@ -64,21 +62,9 @@ public class App {
 
         AdvancedModeCheckBoxMenuItem advancedModeCheckBoxMenuItem = new AdvancedModeCheckBoxMenuItem(jFrame);
 
-        JMenu helpMenu = new JMenu("Help");
-        helpMenu.setBorder(BORDER);
-        helpMenu.setFont(MENU_BAR_FONT);
-        helpMenu.add(newFeaturesMenuItem);
-        helpMenu.add(faqMenuItem);
-        helpMenu.add(contactMenuItem);
-
-        JMenu advancedOptionsMenu = new JMenu("Advanced Options");
-        advancedOptionsMenu.setBorder(BORDER);
-        advancedOptionsMenu.setFont(MENU_BAR_FONT);
-        advancedOptionsMenu.add(advancedModeCheckBoxMenuItem);
-
         JMenuBar jMenuBar = new JMenuBar();
-        jMenuBar.add(helpMenu);
-        jMenuBar.add(advancedOptionsMenu);
+        jMenuBar.add(new CustomMenu("Help Menu", newFeaturesMenuItem, faqMenuItem, contactMenuItem));
+        jMenuBar.add(new CustomMenu("Advanced Options", advancedModeCheckBoxMenuItem));
         jFrame.setJMenuBar(jMenuBar);
     }
 

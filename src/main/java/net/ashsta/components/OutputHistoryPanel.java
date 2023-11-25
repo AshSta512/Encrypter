@@ -1,6 +1,9 @@
 package net.ashsta.components;
 
-import net.ashsta.App;
+import net.ashsta.Cosmetic;
+import net.ashsta.Encryption;
+import net.ashsta.EncryptionSettings;
+import net.ashsta.components.buttons.ShowPasswordButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,9 +20,9 @@ public class OutputHistoryPanel extends JPanel {
 
     private final JTextArea INPUT_TEXT_AREA;
     private final JPasswordField PASSWORD_FIELD;
-    private final JComboBox<EncryptionSettingsPanel.SettingName> ENCRYPTION_SETTINGS_NAME;
-    private final JComboBox<EncryptionSettingsPanel.SettingMode> ENCRYPTION_SETTINGS_MODE;
-    private final JComboBox<EncryptionSettingsPanel.SettingPadding> ENCRYPTION_SETTINGS_PADDING;
+    private final JComboBox<EncryptionSettings.Algorithm> ENCRYPTION_SETTINGS_NAME;
+    private final JComboBox<EncryptionSettings.Mode> ENCRYPTION_SETTINGS_MODE;
+    private final JComboBox<EncryptionSettings.Padding> ENCRYPTION_SETTINGS_PADDING;
     private final JTextArea OUTPUT_TEXT_AREA;
 
     private final List<Entry> HISTORY = new ArrayList<>();
@@ -43,24 +46,24 @@ public class OutputHistoryPanel extends JPanel {
         INPUT_TEXT_AREA.setWrapStyleWord(true);
         JScrollPane inputScrollPane = new JScrollPane(INPUT_TEXT_AREA);
         inputScrollPane.setMaximumSize(new Dimension(256 + 128, 256));
-        inputScrollPane.setBorder(App.BORDER);
+        inputScrollPane.setBorder(Cosmetic.BORDER);
         CustomLabel inputLabel = new CustomLabel("Input History", inputScrollPane);
 
         PASSWORD_FIELD = new JPasswordField();
         PASSWORD_FIELD.setMaximumSize(new Dimension(256 + 128, 64));
         PASSWORD_FIELD.setFont(OUTPUT_FONT);
-        PASSWORD_FIELD.setBorder(App.BORDER);
+        PASSWORD_FIELD.setBorder(Cosmetic.BORDER);
         PASSWORD_FIELD.setEditable(false);
         ShowPasswordButton showPasswordButton = new ShowPasswordButton(PASSWORD_FIELD);
         CustomLabel passwordLabel = new CustomLabel("Password History", PASSWORD_FIELD);
 
-        ENCRYPTION_SETTINGS_NAME = new JComboBox<>(EncryptionSettingsPanel.SettingName.values());
+        ENCRYPTION_SETTINGS_NAME = new JComboBox<>(EncryptionSettings.Algorithm.values());
         ENCRYPTION_SETTINGS_NAME.setEnabled(false);
 
-        ENCRYPTION_SETTINGS_MODE = new JComboBox<>(EncryptionSettingsPanel.SettingMode.values());
+        ENCRYPTION_SETTINGS_MODE = new JComboBox<>(EncryptionSettings.Mode.values());
         ENCRYPTION_SETTINGS_MODE.setEnabled(false);
 
-        ENCRYPTION_SETTINGS_PADDING = new JComboBox<>(EncryptionSettingsPanel.SettingPadding.values());
+        ENCRYPTION_SETTINGS_PADDING = new JComboBox<>(EncryptionSettings.Padding.values());
         ENCRYPTION_SETTINGS_PADDING.setEnabled(false);
 
         JPanel encryptionSettingsPanel = new JPanel();
@@ -79,7 +82,7 @@ public class OutputHistoryPanel extends JPanel {
         OUTPUT_TEXT_AREA.setWrapStyleWord(true);
         JScrollPane outputScrollPane = new JScrollPane(OUTPUT_TEXT_AREA);
         outputScrollPane.setMaximumSize(new Dimension(256 + 128, 256));
-        outputScrollPane.setBorder(App.BORDER);
+        outputScrollPane.setBorder(Cosmetic.BORDER);
         CustomLabel outputLabel = new CustomLabel("Output History", outputScrollPane);
 
         GroupLayout layout = new GroupLayout(this);
@@ -133,7 +136,7 @@ public class OutputHistoryPanel extends JPanel {
     }
 
     public void newOutput(String input, String password, String output) {
-        Entry newEntry = new Entry(input, password, output, EncryptionSettingsPanel.getSettings());
+        Entry newEntry = new Entry(input, password, output, Encryption.getEncryptionSettings());
         int size = HISTORY.size();
         if (size != 0 && newEntry.equals(HISTORY.get(size - 1)))
             return;
@@ -147,7 +150,7 @@ public class OutputHistoryPanel extends JPanel {
     private void setEntry(Entry entry) {
         INPUT_TEXT_AREA.setText(entry.input);
         PASSWORD_FIELD.setText(entry.password);
-        ENCRYPTION_SETTINGS_NAME.setSelectedItem(entry.encryptionSettings.name());
+        ENCRYPTION_SETTINGS_NAME.setSelectedItem(entry.encryptionSettings.algorithm());
         ENCRYPTION_SETTINGS_MODE.setSelectedItem(entry.encryptionSettings.mode());
         ENCRYPTION_SETTINGS_PADDING.setSelectedItem(entry.encryptionSettings.padding());
         OUTPUT_TEXT_AREA.setText(entry.output);
@@ -195,5 +198,5 @@ public class OutputHistoryPanel extends JPanel {
         }
     }
 
-    private record Entry(String input, String password, String output, EncryptionSettingsPanel.Settings encryptionSettings) {}
+    private record Entry(String input, String password, String output, EncryptionSettings encryptionSettings) {}
 }

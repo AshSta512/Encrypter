@@ -1,6 +1,7 @@
 package net.ashsta.components;
 
-import net.ashsta.App;
+import net.ashsta.Cosmetic;
+import net.ashsta.Encryption;
 
 import javax.swing.*;
 import javax.swing.text.AbstractDocument;
@@ -11,24 +12,22 @@ import java.awt.*;
 
 public class PasswordField extends JPasswordField {
 
+    private static final Dimension SIZE = new Dimension(512, 64);
+
     public PasswordField() {
-        setMaximumSize(new Dimension(512, 64));
-        setBorder(App.BORDER);
-        setFont(App.FONT);
-        ((AbstractDocument) getDocument()).setDocumentFilter(new CharacterLimitDocumentFilter(16));
+        setMaximumSize(SIZE);
+        setBorder(Cosmetic.BORDER);
+        setFont(Cosmetic.DEFAULT_FONT);
+        ((AbstractDocument) getDocument()).setDocumentFilter(new CharacterLimitDocumentFilter());
     }
 
     private static class CharacterLimitDocumentFilter extends DocumentFilter {
 
-        private final int CHARACTER_LIMIT;
-
-        public CharacterLimitDocumentFilter(int characterLimit) {
-            CHARACTER_LIMIT = characterLimit;
-        }
+        //TODO: This will not remove extra characters if previous set password is over new keysize length
 
         @Override
         public void replace(FilterBypass filterBypass, int offset, int deleteLength, String text, AttributeSet attributeSet) throws BadLocationException {
-            int overCharacterLimit = (filterBypass.getDocument().getLength() + text.length()) - (CHARACTER_LIMIT + deleteLength);
+            int overCharacterLimit = (filterBypass.getDocument().getLength() + text.length()) - (Encryption.getEncryptionSettings().getKeySize() + deleteLength);
             if (overCharacterLimit > 0)
                 text = text.substring(0, text.length() - overCharacterLimit);
             if (text.length() > 0 || deleteLength > 0)
