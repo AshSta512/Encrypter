@@ -27,7 +27,7 @@ public class PasswordField extends JPasswordField {
 
         @Override
         public void replace(FilterBypass filterBypass, int offset, int deleteLength, String text, AttributeSet attributeSet) throws BadLocationException {
-            int overCharacterLimit = (filterBypass.getDocument().getLength() + text.length()) - (Encryption.getEncryptionSettings().getKeySize() + deleteLength);
+            int overCharacterLimit = (filterBypass.getDocument().getLength() + text.length()) - (Encryption.getSettings().getKeySize() + deleteLength);
             if (overCharacterLimit > 0)
                 text = text.substring(0, text.length() - overCharacterLimit);
             if (text.length() > 0 || deleteLength > 0)

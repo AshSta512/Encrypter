@@ -69,32 +69,32 @@ public class EncryptionSettingsPanel extends JPanel implements AdvancedComponent
     public void setEnabled(boolean state) {
         setVisible(state);
         if (!state) {
-            Encryption.setEncryptionSettings(EncryptionSettings.DEFAULT);
+            Encryption.setSettings(EncryptionSettings.DEFAULT);
             updateComboBoxes();
         }
     }
 
     private void setSettingName(EncryptionSettings.Algorithm algorithm) {
-        EncryptionSettings settings = Encryption.getEncryptionSettings();
+        EncryptionSettings settings = Encryption.getSettings();
         settings = new EncryptionSettings(algorithm, settings.mode(), settings.padding());
-        Encryption.setEncryptionSettings(settings);
+        Encryption.setSettings(settings);
         updateComboBoxes();
     }
 
     private void setSettingMode(EncryptionSettings.Mode mode) {
-        EncryptionSettings settings = Encryption.getEncryptionSettings();
+        EncryptionSettings settings = Encryption.getSettings();
         settings = new EncryptionSettings(settings.algorithm(), mode, settings.padding());
-        Encryption.setEncryptionSettings(settings);
+        Encryption.setSettings(settings);
     }
 
     private void setSettingPadding(EncryptionSettings.Padding padding) {
-        EncryptionSettings settings = Encryption.getEncryptionSettings();
+        EncryptionSettings settings = Encryption.getSettings();
         settings = new EncryptionSettings(settings.algorithm(), settings.mode(), padding);
-        Encryption.setEncryptionSettings(settings);
+        Encryption.setSettings(settings);
     }
 
     private void updateComboBoxes() {
-        EncryptionSettings settings = Encryption.getEncryptionSettings();
+        EncryptionSettings settings = Encryption.getSettings();
         MODES_COMBO_BOX.removeAllItems();
         for (EncryptionSettings.Mode mode : EncryptionSettings.Mode.getAlgorithmModes(settings.algorithm()))
             MODES_COMBO_BOX.addItem(mode);

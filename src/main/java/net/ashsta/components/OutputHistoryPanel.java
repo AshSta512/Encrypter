@@ -136,7 +136,7 @@ public class OutputHistoryPanel extends JPanel {
     }
 
     public void newOutput(String input, String password, String output) {
-        Entry newEntry = new Entry(input, password, output, Encryption.getEncryptionSettings());
+        Entry newEntry = new Entry(input, password, output, Encryption.getSettings());
         int size = HISTORY.size();
         if (size != 0 && newEntry.equals(HISTORY.get(size - 1)))
             return;

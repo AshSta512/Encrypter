@@ -11,11 +11,11 @@ public class Encryption {
 
     private static EncryptionSettings encryptionSettings = EncryptionSettings.DEFAULT;
 
-    public static void setEncryptionSettings(EncryptionSettings settings) {
+    public static void setSettings(EncryptionSettings settings) {
         encryptionSettings = settings;
     }
 
-    public static EncryptionSettings getEncryptionSettings() {
+    public static EncryptionSettings getSettings() {
         return encryptionSettings;
     }
 
