@@ -1,6 +1,8 @@
 package net.ashsta;
 
 import net.ashsta.components.*;
+import net.ashsta.menu.AdvancedModeCheckBoxMenuItem;
+import net.ashsta.menu.CustomTextMenuItem;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -20,7 +22,7 @@ public class App {
         URL iconURL = App.class.getClassLoader().getResource("icon.png");
         Image iconImage = Toolkit.getDefaultToolkit().createImage(iconURL);
         jFrame.setIconImage(iconImage);
-        jFrame.setSize(new Dimension(1600 - 256 - 32, 960 - 64 - 32));
+        jFrame.setSize(1600 - 256 - 32, 960 - 64 - 32);
         jFrame.setResizable(false);
         jFrame.setLocationRelativeTo(null);
         addMenuBar(jFrame);
@@ -32,14 +34,20 @@ public class App {
     private static void addMenuBar(JFrame jFrame) {
         CustomTextMenuItem newFeaturesMenuItem = new CustomTextMenuItem(jFrame, "New Features",
                 "<b>Everything is new!</b>",
-                "<b>How to use the program:</b>",
-                "Input text into the \"Text Input\" box,",
-                "(Optional) Enter a password,",
-                "Press \"Encrypt\" to encrypt text and \"Decrypt\" to decrypt text!",
                 "<b>More features coming soon!</b>"
         );
 
         CustomTextMenuItem faqMenuItem = new CustomTextMenuItem(jFrame, "Frequently Asked Questions",
+                "<b>How to use the program:</b>",
+                "Input text into the \"Text Input\" box,",
+                "(Optional) Enter a password,",
+                "Press \"Encrypt\" to encrypt text and \"Decrypt\" to decrypt text!",
+                "You can copy and paste data in the program using CTRL+C and CTRL+V",
+                "<b>What is advanced mode?</b>",
+                "Advanced mode is not yet implemented, but it will enable features that",
+                "may not be necessary for less-technical users.",
+                "The features are intended to give you finer control over how the encryption",
+                "algorithm functions along with possible automations.",
                 "<b>Who is this program intended for?</b>",
                 "Anyone who wants to encrypt/decrypt data using a password.",
                 "<b>What are some possible uses for this program?</b>",
@@ -54,21 +62,7 @@ public class App {
                 "Email: staskoa@oregonstate.edu"
         );
 
-        JCheckBoxMenuItem advancedModeMenuItem = new JCheckBoxMenuItem("Advanced Mode");
-        advancedModeMenuItem.setFont(MENU_BAR_FONT);
-        advancedModeMenuItem.addActionListener(e -> {
-            boolean state = advancedModeMenuItem.getState();
-            JLabel jLabel = new JLabel(
-                    "<html>Are you sure you want to " +
-                    (state ? "enable" : "disable") +
-                    " advanced mode? <br>" +
-                    "NOTE: Advanced Mode is not currently implemented and will not affect the program.</html>"
-            );
-            jLabel.setFont(POPOUT_BOX_FONT);
-            int option = JOptionPane.showConfirmDialog(jFrame, jLabel, "Advanced Mode Confirmation", JOptionPane.YES_NO_OPTION);
-            if (option == JOptionPane.NO_OPTION)
-                advancedModeMenuItem.setState(!state);
-        });
+        AdvancedModeCheckBoxMenuItem advancedModeCheckBoxMenuItem = new AdvancedModeCheckBoxMenuItem(jFrame);
 
         JMenu helpMenu = new JMenu("Help");
         helpMenu.setBorder(BORDER);
@@ -80,7 +74,7 @@ public class App {
         JMenu advancedOptionsMenu = new JMenu("Advanced Options");
         advancedOptionsMenu.setBorder(BORDER);
         advancedOptionsMenu.setFont(MENU_BAR_FONT);
-        advancedOptionsMenu.add(advancedModeMenuItem);
+        advancedOptionsMenu.add(advancedModeCheckBoxMenuItem);
 
         JMenuBar jMenuBar = new JMenuBar();
         jMenuBar.add(helpMenu);
@@ -97,9 +91,12 @@ public class App {
         PasswordField passwordField = new PasswordField();
         CustomLabel passwordFieldLabel = new CustomLabel("Password", passwordField);
         ShowPasswordButton showPasswordButton = new ShowPasswordButton(passwordField);
+        GeneratePasswordButton generatePasswordButton = new GeneratePasswordButton(passwordField);
 
         EncryptButton encryptButton = new EncryptButton(jFrame, inputScrollPane, passwordField, outputHistoryPanel);
         DecryptButton decryptButton = new DecryptButton(jFrame, inputScrollPane, passwordField, outputHistoryPanel);
+
+        EncryptionSettingsPanel encryptionSettingsPanel = new EncryptionSettingsPanel();
 
         // ADD TO JFRAME
         Container container = jFrame.getContentPane();
@@ -115,13 +112,15 @@ public class App {
                                 .addComponent(inputScrollPane))
                         .addGroup(layout.createSequentialGroup()
                                 .addComponent(passwordFieldLabel)
-                                .addComponent(showPasswordButton))
+                                .addComponent(showPasswordButton)
+                                .addComponent(generatePasswordButton))
                         .addGroup(layout.createSequentialGroup()
                                 .addComponent(passwordField)
                                 .addGap(64)
                                 .addComponent(encryptButton)
                                 .addGap(64)
                                 .addComponent(decryptButton))
+                        .addComponent(encryptionSettingsPanel)
                         .addComponent(outputHistoryPanel));
 
         GroupLayout.Group verticalGroup = layout.createSequentialGroup()
@@ -130,11 +129,13 @@ public class App {
                         .addComponent(inputScrollPane))
                 .addGroup(layout.createParallelGroup()
                         .addComponent(passwordFieldLabel)
-                        .addComponent(showPasswordButton))
+                        .addComponent(showPasswordButton)
+                        .addComponent(generatePasswordButton))
                 .addGroup(layout.createParallelGroup()
                         .addComponent(passwordField)
                         .addComponent(encryptButton)
                         .addComponent(decryptButton))
+                .addComponent(encryptionSettingsPanel)
                 .addComponent(outputHistoryPanel);
 
         layout.setHorizontalGroup(horizontalGroup);

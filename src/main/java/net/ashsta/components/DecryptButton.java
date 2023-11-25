@@ -9,11 +9,11 @@ import java.awt.*;
 public class DecryptButton extends JButton {
 
     public DecryptButton(JFrame jFrame, InputScrollPane inputScrollPane, PasswordField passwordField, OutputHistoryPanel outputHistoryPanel) {
-        this.setMaximumSize(new Dimension(128 + 48, 64));
-        this.setFont(App.BUTTON_FONT);
-        this.setText("Decrypt");
-        this.setBackground(Color.GREEN);
-        this.addActionListener(e -> {
+        setMaximumSize(new Dimension(128 + 48, 64));
+        setFont(App.BUTTON_FONT);
+        setText("Decrypt");
+        setBackground(Color.GREEN);
+        addActionListener(e -> {
             String input = inputScrollPane.getTextArea().getText();
             String password = new String(passwordField.getPassword());
             String decryptedText = Encryption.decryptBase64(input, password.getBytes());

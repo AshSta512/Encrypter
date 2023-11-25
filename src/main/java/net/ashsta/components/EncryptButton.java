@@ -9,11 +9,11 @@ import java.awt.*;
 public class EncryptButton extends JButton {
 
     public EncryptButton(JFrame jFrame, InputScrollPane inputScrollPane, PasswordField passwordField, OutputHistoryPanel outputHistoryPanel) {
-        this.setMaximumSize(new Dimension(128 + 48, 64));
-        this.setFont(App.BUTTON_FONT);
-        this.setText("Encrypt");
-        this.setBackground(Color.RED);
-        this.addActionListener(e -> {
+        setMaximumSize(new Dimension(128 + 48, 64));
+        setFont(App.BUTTON_FONT);
+        setText("Encrypt");
+        setBackground(Color.RED);
+        addActionListener(e -> {
             String input = inputScrollPane.getTextArea().getText();
             String password = new String(passwordField.getPassword());
             String encryptedText = Encryption.encryptBase64(input.getBytes(), password.getBytes());

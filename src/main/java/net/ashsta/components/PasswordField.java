@@ -12,10 +12,10 @@ import java.awt.*;
 public class PasswordField extends JPasswordField {
 
     public PasswordField() {
-        this.setMaximumSize(new Dimension(512, 64));
-        this.setBorder(App.BORDER);
-        this.setFont(App.FONT);
-        ((AbstractDocument) this.getDocument()).setDocumentFilter(new CharacterLimitDocumentFilter(16));
+        setMaximumSize(new Dimension(512, 64));
+        setBorder(App.BORDER);
+        setFont(App.FONT);
+        ((AbstractDocument) getDocument()).setDocumentFilter(new CharacterLimitDocumentFilter(16));
     }
 
     private static class CharacterLimitDocumentFilter extends DocumentFilter {

@@ -7,9 +7,9 @@ import java.awt.event.MouseEvent;
 public class ShowPasswordButton extends JButton {
 
     public ShowPasswordButton(JPasswordField passwordField) {
-        this.setMaximumSize(new Dimension(64, 32));
-        this.setText("Hold to Show Password");
-        this.addMouseListener(new MouseListener(passwordField));
+        setMaximumSize(new Dimension(64, 32));
+        setText("Hold to Show Password");
+        addMouseListener(new MouseListener(passwordField));
     }
 
     private static class MouseListener implements java.awt.event.MouseListener {

@@ -17,6 +17,9 @@ public class OutputHistoryPanel extends JPanel {
 
     private final JTextArea INPUT_TEXT_AREA;
     private final JPasswordField PASSWORD_FIELD;
+    private final JComboBox<EncryptionSettingsPanel.SettingName> ENCRYPTION_SETTINGS_NAME;
+    private final JComboBox<EncryptionSettingsPanel.SettingMode> ENCRYPTION_SETTINGS_MODE;
+    private final JComboBox<EncryptionSettingsPanel.SettingPadding> ENCRYPTION_SETTINGS_PADDING;
     private final JTextArea OUTPUT_TEXT_AREA;
 
     private final List<Entry> HISTORY = new ArrayList<>();
@@ -46,9 +49,28 @@ public class OutputHistoryPanel extends JPanel {
         PASSWORD_FIELD = new JPasswordField();
         PASSWORD_FIELD.setMaximumSize(new Dimension(256 + 128, 64));
         PASSWORD_FIELD.setFont(OUTPUT_FONT);
+        PASSWORD_FIELD.setBorder(App.BORDER);
         PASSWORD_FIELD.setEditable(false);
         ShowPasswordButton showPasswordButton = new ShowPasswordButton(PASSWORD_FIELD);
         CustomLabel passwordLabel = new CustomLabel("Password History", PASSWORD_FIELD);
+
+        ENCRYPTION_SETTINGS_NAME = new JComboBox<>(EncryptionSettingsPanel.SettingName.values());
+        ENCRYPTION_SETTINGS_NAME.setEnabled(false);
+
+        ENCRYPTION_SETTINGS_MODE = new JComboBox<>(EncryptionSettingsPanel.SettingMode.values());
+        ENCRYPTION_SETTINGS_MODE.setEnabled(false);
+
+        ENCRYPTION_SETTINGS_PADDING = new JComboBox<>(EncryptionSettingsPanel.SettingPadding.values());
+        ENCRYPTION_SETTINGS_PADDING.setEnabled(false);
+
+        JPanel encryptionSettingsPanel = new JPanel();
+        encryptionSettingsPanel.setMaximumSize(new Dimension(256 + 128, 32));
+        encryptionSettingsPanel.add(ENCRYPTION_SETTINGS_NAME);
+        encryptionSettingsPanel.add(ENCRYPTION_SETTINGS_MODE);
+        encryptionSettingsPanel.add(ENCRYPTION_SETTINGS_PADDING);
+        encryptionSettingsPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        CustomLabel encryptionSettingsLabel = new CustomLabel("Encryption Settings", encryptionSettingsPanel);
 
         OUTPUT_TEXT_AREA = new JTextArea();
         OUTPUT_TEXT_AREA.setFont(OUTPUT_FONT);
@@ -61,7 +83,7 @@ public class OutputHistoryPanel extends JPanel {
         CustomLabel outputLabel = new CustomLabel("Output History", outputScrollPane);
 
         GroupLayout layout = new GroupLayout(this);
-        this.setLayout(layout);
+        setLayout(layout);
         layout.setAutoCreateGaps(true);
 
         GroupLayout.Group horizontalGroup = layout.createParallelGroup()
@@ -78,7 +100,9 @@ public class OutputHistoryPanel extends JPanel {
                                 .addGroup(layout.createSequentialGroup()
                                         .addComponent(passwordLabel)
                                         .addComponent(showPasswordButton))
-                                .addComponent(PASSWORD_FIELD))
+                                .addComponent(PASSWORD_FIELD)
+                                .addComponent(encryptionSettingsLabel)
+                                .addComponent(encryptionSettingsPanel))
                         .addGroup(layout.createParallelGroup()
                                 .addComponent(outputLabel)
                                 .addComponent(outputScrollPane)));
@@ -97,7 +121,9 @@ public class OutputHistoryPanel extends JPanel {
                                 .addGroup(layout.createParallelGroup()
                                         .addComponent(passwordLabel)
                                         .addComponent(showPasswordButton))
-                                .addComponent(PASSWORD_FIELD))
+                                .addComponent(PASSWORD_FIELD)
+                                .addComponent(encryptionSettingsLabel)
+                                .addComponent(encryptionSettingsPanel))
                         .addGroup(layout.createSequentialGroup()
                                 .addComponent(outputLabel)
                                 .addComponent(outputScrollPane)));
@@ -107,7 +133,7 @@ public class OutputHistoryPanel extends JPanel {
     }
 
     public void newOutput(String input, String password, String output) {
-        Entry newEntry = new Entry(input, password, output);
+        Entry newEntry = new Entry(input, password, output, EncryptionSettingsPanel.getSettings());
         int size = HISTORY.size();
         if (size != 0 && newEntry.equals(HISTORY.get(size - 1)))
             return;
@@ -121,6 +147,9 @@ public class OutputHistoryPanel extends JPanel {
     private void setEntry(Entry entry) {
         INPUT_TEXT_AREA.setText(entry.input);
         PASSWORD_FIELD.setText(entry.password);
+        ENCRYPTION_SETTINGS_NAME.setSelectedItem(entry.encryptionSettings.name());
+        ENCRYPTION_SETTINGS_MODE.setSelectedItem(entry.encryptionSettings.mode());
+        ENCRYPTION_SETTINGS_PADDING.setSelectedItem(entry.encryptionSettings.padding());
         OUTPUT_TEXT_AREA.setText(entry.output);
     }
 
@@ -166,5 +195,5 @@ public class OutputHistoryPanel extends JPanel {
         }
     }
 
-    private record Entry(String input, String password, String output) {}
+    private record Entry(String input, String password, String output, EncryptionSettingsPanel.Settings encryptionSettings) {}
 }

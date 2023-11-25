@@ -1,4 +1,4 @@
-package net.ashsta.components;
+package net.ashsta.menu;
 
 import net.ashsta.App;
 
