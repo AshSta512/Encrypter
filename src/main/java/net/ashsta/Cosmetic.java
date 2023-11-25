@@ -11,5 +11,4 @@ public class Cosmetic {
     public static final Font POPOUT_BOX_FONT = new Font("Default", Font.PLAIN, 24);
 
     public static final Border BORDER = BorderFactory.createLineBorder(Color.black);
-
 }
