@@ -5,9 +5,7 @@ import net.ashsta.components.buttons.DecryptButton;
 import net.ashsta.components.buttons.EncryptButton;
 import net.ashsta.components.buttons.GeneratePasswordButton;
 import net.ashsta.components.buttons.ShowPasswordButton;
-import net.ashsta.menu.AdvancedModeCheckBoxMenuItem;
-import net.ashsta.menu.CustomMenu;
-import net.ashsta.menu.CustomTextMenuItem;
+import net.ashsta.menu.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,48 +21,28 @@ public class App {
         jFrame.setSize(1600 - 256 - 32, 960 - 64 - 32);
         jFrame.setResizable(false);
         jFrame.setLocationRelativeTo(null);
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addMenuBar(jFrame);
         addComponents(jFrame);
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setVisible(true);
     }
 
     private static void addMenuBar(JFrame jFrame) {
-        CustomTextMenuItem newFeaturesMenuItem = new CustomTextMenuItem(jFrame, "New Features",
-                "<b>Everything is new!</b>",
-                "<b>More features coming soon!</b>"
+        CustomMenu helpMenu = new CustomMenu(
+                "Help Menu",
+                new NewFeaturesMenuItem(jFrame),
+                new FAQMenuItem(jFrame),
+                new ContactMenuItem(jFrame)
         );
 
-        CustomTextMenuItem faqMenuItem = new CustomTextMenuItem(jFrame, "Frequently Asked Questions",
-                "<b>How to use the program:</b>",
-                "Input text into the \"Text Input\" box,",
-                "(Optional) Enter a password,",
-                "Press \"Encrypt\" to encrypt text and \"Decrypt\" to decrypt text!",
-                "You can copy and paste data in the program using CTRL+C and CTRL+V",
-                "<b>What is advanced mode?</b>",
-                "Advanced mode is not yet implemented, but it will enable features that",
-                "may not be necessary for less-technical users.",
-                "The features are intended to give you finer control over how the encryption",
-                "algorithm functions along with possible automations.",
-                "<b>Who is this program intended for?</b>",
-                "Anyone who wants to encrypt/decrypt data using a password.",
-                "<b>What are some possible uses for this program?</b>",
-                "Encrypting messages that you only want people who know the password to see.",
-                "<b>How does the encryption work?</b>",
-                "Inputted data is transformed using the given password and the AES algorithm.",
-                "Encrypted data is then converted to a Base64 string for simpler storage!"
+        CustomMenu advancedOptionsMenu = new CustomMenu(
+                "Advanced Options",
+                new AdvancedModeCheckBoxMenuItem(jFrame)
         );
-
-        CustomTextMenuItem contactMenuItem = new CustomTextMenuItem(jFrame, "Contact Information",
-                "Need more assistance? Contact the developer!",
-                "Email: staskoa@oregonstate.edu"
-        );
-
-        AdvancedModeCheckBoxMenuItem advancedModeCheckBoxMenuItem = new AdvancedModeCheckBoxMenuItem(jFrame);
 
         JMenuBar jMenuBar = new JMenuBar();
-        jMenuBar.add(new CustomMenu("Help Menu", newFeaturesMenuItem, faqMenuItem, contactMenuItem));
-        jMenuBar.add(new CustomMenu("Advanced Options", advancedModeCheckBoxMenuItem));
+        jMenuBar.add(helpMenu);
+        jMenuBar.add(advancedOptionsMenu);
         jFrame.setJMenuBar(jMenuBar);
     }
 
