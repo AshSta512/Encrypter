@@ -11,6 +11,8 @@ import java.net.URL;
 
 public class App extends JFrame {
 
+    private static final Dimension SIZE = new Dimension(1600 - 256 - 32, 960 - 64 - 32);
+
     private final UserInputPanel USER_INPUT_PANEL = new UserInputPanel();
     private final AdvancedSettingsPanel ADVANCED_SETTINGS_PANEL = new AdvancedSettingsPanel();
     private final OutputPanel OUTPUT_PANEL = new OutputPanel();
@@ -29,15 +31,19 @@ public class App extends JFrame {
 
     public App() {
         super("Encrypter");
-        URL iconURL = App.class.getClassLoader().getResource("icon.png");
-        Image iconImage = Toolkit.getDefaultToolkit().createImage(iconURL);
-        setIconImage(iconImage);
-        setSize(1600 - 256 - 32, 960 - 64 - 32);
+        addIcon();
+        setSize(SIZE);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addMenuBar();
         addComponents();
+    }
+
+    private void addIcon() {
+        URL iconURL = App.class.getClassLoader().getResource("icon.png");
+        Image iconImage = Toolkit.getDefaultToolkit().createImage(iconURL);
+        setIconImage(iconImage);
     }
 
     private void addMenuBar() {
