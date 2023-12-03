@@ -6,6 +6,7 @@ import net.ashsta.encryption.Encryption;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class EncryptButtonsPanel extends JPanel {
 
@@ -41,12 +42,8 @@ public class EncryptButtonsPanel extends JPanel {
         setLayout(layout);
     }
 
-    private JButton createEncryptButton() {
-        JButton encryptButton = new JButton("Encrypt");
-        encryptButton.setFont(BUTTON_FONT);
-        encryptButton.setMaximumSize(BUTTON_SIZE);
-        encryptButton.setBackground(Color.RED);
-        encryptButton.addActionListener(e -> {
+    private ActionListener createEncryptActionListener() {
+        return e -> {
             App app = Encrypter.getApp();
             UserInputPanel userInputPanel = app.getUserInputPanel();
             String input = userInputPanel.getTextInput();
@@ -60,16 +57,20 @@ public class EncryptButtonsPanel extends JPanel {
                 return;
             }
             app.getOutputPanel().newOutput(input, password, encryptedText);
-        });
+        };
+    }
+
+    private JButton createEncryptButton() {
+        JButton encryptButton = new JButton("Encrypt");
+        encryptButton.setFont(BUTTON_FONT);
+        encryptButton.setMaximumSize(BUTTON_SIZE);
+        encryptButton.setBackground(Color.RED);
+        encryptButton.addActionListener(createEncryptActionListener());
         return encryptButton;
     }
 
-    private JButton createDecryptButton() {
-        JButton decryptButton = new JButton("Decrypt");
-        decryptButton.setFont(BUTTON_FONT);
-        decryptButton.setMaximumSize(BUTTON_SIZE);
-        decryptButton.setBackground(Color.GREEN);
-        decryptButton.addActionListener(e -> {
+    private ActionListener createDecryptActionListener() {
+        return e -> {
             App app = Encrypter.getApp();
             UserInputPanel userInputPanel = app.getUserInputPanel();
             String input = userInputPanel.getTextInput();
@@ -83,7 +84,15 @@ public class EncryptButtonsPanel extends JPanel {
                 return;
             }
             app.getOutputPanel().newOutput(input, password, decryptedText);
-        });
+        };
+    }
+
+    private JButton createDecryptButton() {
+        JButton decryptButton = new JButton("Decrypt");
+        decryptButton.setFont(BUTTON_FONT);
+        decryptButton.setMaximumSize(BUTTON_SIZE);
+        decryptButton.setBackground(Color.GREEN);
+        decryptButton.addActionListener(createDecryptActionListener());
         return decryptButton;
     }
 }
