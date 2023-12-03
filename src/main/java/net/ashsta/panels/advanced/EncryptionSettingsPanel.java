@@ -15,9 +15,10 @@ public class EncryptionSettingsPanel extends JPanel {
     private final JComboBox<EncryptionSettings.Padding> PADDING_COMBO_BOX = new JComboBox<>(EncryptionSettings.Padding.getDefaultAlgorithmPaddings());
 
     public EncryptionSettingsPanel() {
-        CustomLabel encryptionSettingsPanelLabel = new CustomLabel("Encryption Settings", this);
-
         setMaximumSize(SIZE);
+        setOpaque(false);
+
+        CustomLabel encryptionSettingsPanelLabel = new CustomLabel("Encryption Settings", this);
 
         JComboBox<EncryptionSettings.Algorithm> algorithmsComboBox = new JComboBox<>(EncryptionSettings.Algorithm.values());
 

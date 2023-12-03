@@ -10,6 +10,7 @@ public class CustomMenu extends JMenu {
         super(text);
         setFont(Cosmetic.MENU_BAR_FONT);
         setBorder(Cosmetic.BORDER);
+        setBackground(Cosmetic.MENU_BAR_COLOR);
         for (JMenuItem menuItem : menuItems)
             add(menuItem);
     }

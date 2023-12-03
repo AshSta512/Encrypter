@@ -12,6 +12,7 @@ public class UserInputPanel extends JPanel {
 
     public UserInputPanel() {
         setFont(Cosmetic.DEFAULT_FONT);
+        setOpaque(false);
 
         EncryptButtonsPanel encryptButtonsPanel = new EncryptButtonsPanel();
 

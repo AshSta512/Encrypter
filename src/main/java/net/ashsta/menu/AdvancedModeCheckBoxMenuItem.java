@@ -10,6 +10,9 @@ public class AdvancedModeCheckBoxMenuItem extends JCheckBoxMenuItem {
 
     public AdvancedModeCheckBoxMenuItem() {
         setText("Advanced Mode");
+        setBorder(Cosmetic.BORDER);
+        setBackground(Cosmetic.MENU_BAR_COLOR);
+        setForeground(Cosmetic.MENU_BAR_TEXT_COLOR);
         setFont(Cosmetic.MENU_BAR_FONT);
         addActionListener(e -> {
             App app = Encrypter.getApp();

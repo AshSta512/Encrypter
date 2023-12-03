@@ -13,6 +13,8 @@ public class TextInputPanel extends JPanel {
     private static final Dimension SIZE = new Dimension(1280 - 64 - 32 - 4, 256);
 
     public TextInputPanel() {
+        setOpaque(false);
+
         CustomLabel inputTextLabel = new CustomLabel("Text Input", this);
 
         JScrollPane textInputScrollPane = createScrollPane();
@@ -35,6 +37,7 @@ public class TextInputPanel extends JPanel {
 
     private void initializeTextArea() {
         TEXT_AREA.setFont(Cosmetic.DEFAULT_FONT);
+        TEXT_AREA.setBackground(Cosmetic.TEXT_BOX_BACKGROUND_COLOR);
         TEXT_AREA.setLineWrap(true);
         TEXT_AREA.setWrapStyleWord(true);
     }

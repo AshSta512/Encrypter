@@ -28,6 +28,8 @@ public class OutputPanel extends JPanel {
     private int index = -1;
 
     public OutputPanel() {
+        setOpaque(false);
+
         CustomLabel historyLabel = new CustomLabel("History", this);
 
         OUTPUT_HISTORY_BUTTONS_PANEL = new OutputHistoryButtonsPanel(this);
@@ -92,6 +94,7 @@ public class OutputPanel extends JPanel {
 
     private void initializeInputTextArea() {
         INPUT_TEXT_AREA.setFont(OUTPUT_FONT);
+        INPUT_TEXT_AREA.setBackground(Cosmetic.TEXT_BOX_BACKGROUND_COLOR);
         INPUT_TEXT_AREA.setEditable(false);
         INPUT_TEXT_AREA.setLineWrap(true);
         INPUT_TEXT_AREA.setWrapStyleWord(true);
@@ -108,6 +111,7 @@ public class OutputPanel extends JPanel {
     private void initializePasswordField() {
         PASSWORD_FIELD.setMaximumSize(new Dimension(256 + 128, 64));
         PASSWORD_FIELD.setFont(OUTPUT_FONT);
+        PASSWORD_FIELD.setBackground(Cosmetic.TEXT_BOX_BACKGROUND_COLOR);
         PASSWORD_FIELD.setBorder(Cosmetic.BORDER);
         PASSWORD_FIELD.setEditable(false);
     }
@@ -122,6 +126,7 @@ public class OutputPanel extends JPanel {
         initializeEncryptionSettingsComboBoxes();
         JPanel encryptionSettingsPanel = new JPanel();
         encryptionSettingsPanel.setMaximumSize(new Dimension(256 + 128, 32));
+        encryptionSettingsPanel.setOpaque(false);
         encryptionSettingsPanel.add(ENCRYPTION_SETTINGS_NAME);
         encryptionSettingsPanel.add(ENCRYPTION_SETTINGS_MODE);
         encryptionSettingsPanel.add(ENCRYPTION_SETTINGS_PADDING);
@@ -131,6 +136,7 @@ public class OutputPanel extends JPanel {
 
     private void initializeOutputTextArea() {
         OUTPUT_TEXT_AREA.setFont(OUTPUT_FONT);
+        OUTPUT_TEXT_AREA.setBackground(Cosmetic.TEXT_BOX_BACKGROUND_COLOR);
         OUTPUT_TEXT_AREA.setEditable(false);
         OUTPUT_TEXT_AREA.setLineWrap(true);
         OUTPUT_TEXT_AREA.setWrapStyleWord(true);

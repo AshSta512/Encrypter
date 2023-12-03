@@ -8,6 +8,9 @@ public class CustomTextMenuItem extends JMenuItem {
 
     public CustomTextMenuItem(JFrame jFrame, String title, String... text) {
         super(title);
+        setBorder(Cosmetic.BORDER);
+        setBackground(Cosmetic.MENU_BAR_COLOR);
+        setForeground(Cosmetic.MENU_BAR_TEXT_COLOR);
         setFont(Cosmetic.MENU_BAR_FONT);
         addActionListener(e -> {
             JLabel jLabel = new JLabel("<html>" + String.join("<br>", text) + "</html>");

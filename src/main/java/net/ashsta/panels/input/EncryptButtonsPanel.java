@@ -15,8 +15,12 @@ public class EncryptButtonsPanel extends JPanel {
     private static final Font BUTTON_FONT = new Font("Default", Font.BOLD, 32);
     private static final Dimension BUTTON_SIZE = new Dimension(256 - 64, 128 - 32);
 
+    private static final Color ENCRYPT_BUTTON_COLOR = new Color(255, 0, 75);
+    private static final Color DECRYPT_BUTTON_COLOR = new Color(0, 255, 75);
+
     public EncryptButtonsPanel() {
         setMaximumSize(PANEL_SIZE);
+        setOpaque(false);
 
         JButton encryptButton = createEncryptButton();
         JButton decryptButton = createDecryptButton();
@@ -64,7 +68,7 @@ public class EncryptButtonsPanel extends JPanel {
         JButton encryptButton = new JButton("Encrypt");
         encryptButton.setFont(BUTTON_FONT);
         encryptButton.setMaximumSize(BUTTON_SIZE);
-        encryptButton.setBackground(Color.RED);
+        encryptButton.setBackground(ENCRYPT_BUTTON_COLOR);
         encryptButton.addActionListener(createEncryptActionListener());
         return encryptButton;
     }
@@ -91,7 +95,7 @@ public class EncryptButtonsPanel extends JPanel {
         JButton decryptButton = new JButton("Decrypt");
         decryptButton.setFont(BUTTON_FONT);
         decryptButton.setMaximumSize(BUTTON_SIZE);
-        decryptButton.setBackground(Color.GREEN);
+        decryptButton.setBackground(DECRYPT_BUTTON_COLOR);
         decryptButton.addActionListener(createDecryptActionListener());
         return decryptButton;
     }

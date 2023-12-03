@@ -7,6 +7,8 @@ public class AdvancedSettingsPanel extends JPanel {
     EncryptionSettingsPanel ENCRYPTION_SETTINGS_PANEL = new EncryptionSettingsPanel();
 
     public AdvancedSettingsPanel() {
+        setOpaque(false);
+
         GroupLayout layout = new GroupLayout(this);
         layout.setAutoCreateGaps(true);
 

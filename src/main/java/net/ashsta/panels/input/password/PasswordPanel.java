@@ -11,6 +11,7 @@ public class PasswordPanel extends JPanel {
 
     public PasswordPanel() {
         setMaximumSize(new Dimension(256, 128));
+        setOpaque(false);
         CustomLabel passwordFieldLabel = new CustomLabel("Password", PASSWORD_FIELD);
         ShowPasswordButton showPasswordButton = new ShowPasswordButton(PASSWORD_FIELD);
         GeneratePasswordButton generatePasswordButton = new GeneratePasswordButton(PASSWORD_FIELD);

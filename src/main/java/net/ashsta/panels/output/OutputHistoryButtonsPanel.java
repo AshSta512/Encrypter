@@ -9,6 +9,8 @@ public class OutputHistoryButtonsPanel extends JPanel {
     private final JButton MOST_RECENT_OUTPUT_BUTTON = new JButton("Most Recent");
 
     public OutputHistoryButtonsPanel(OutputPanel outputPanel) {
+        setOpaque(false);
+
         PREVIOUS_OUTPUT_BUTTON.addActionListener(e -> outputPanel.previousEntry());
         NEXT_OUTPUT_BUTTON.addActionListener(e -> outputPanel.nextEntry());
         MOST_RECENT_OUTPUT_BUTTON.addActionListener(e -> outputPanel.mostRecentEntry());
