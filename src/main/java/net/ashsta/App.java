@@ -1,89 +1,81 @@
 package net.ashsta;
 
-import net.ashsta.components.*;
-import net.ashsta.components.buttons.DecryptButton;
-import net.ashsta.components.buttons.EncryptButton;
-import net.ashsta.components.buttons.GeneratePasswordButton;
-import net.ashsta.components.buttons.ShowPasswordButton;
 import net.ashsta.menu.*;
+import net.ashsta.panels.advanced.AdvancedSettingsPanel;
+import net.ashsta.panels.input.UserInputPanel;
+import net.ashsta.panels.output.OutputPanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
 
-public class App {
+public class App extends JFrame {
 
-    public static void main(String[] args) {
-        JFrame jFrame = new JFrame("Encrypter");
-        URL iconURL = App.class.getClassLoader().getResource("icon.png");
-        Image iconImage = Toolkit.getDefaultToolkit().createImage(iconURL);
-        jFrame.setIconImage(iconImage);
-        jFrame.setSize(1600 - 256 - 32, 960 - 64 - 32);
-        jFrame.setResizable(false);
-        jFrame.setLocationRelativeTo(null);
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setJMenuBar(new CustomMenuBar(jFrame));
-        addComponents(jFrame);
-        jFrame.setVisible(true);
+    private final UserInputPanel USER_INPUT_PANEL = new UserInputPanel();
+    private final AdvancedSettingsPanel ADVANCED_SETTINGS_PANEL = new AdvancedSettingsPanel();
+    private final OutputPanel OUTPUT_PANEL = new OutputPanel();
+
+    public UserInputPanel getUserInputPanel() {
+        return USER_INPUT_PANEL;
     }
 
-    private static void addComponents(JFrame jFrame) {
-        InputScrollPane inputScrollPane = new InputScrollPane();
-        CustomLabel inputTextLabel = new CustomLabel("Text Input", inputScrollPane);
+    public AdvancedSettingsPanel getAdvancedSettingsPanel() {
+        return ADVANCED_SETTINGS_PANEL;
+    }
 
-        OutputHistoryPanel outputHistoryPanel = new OutputHistoryPanel();
+    public OutputPanel getOutputPanel() {
+        return OUTPUT_PANEL;
+    }
 
-        PasswordField passwordField = new PasswordField();
-        CustomLabel passwordFieldLabel = new CustomLabel("Password", passwordField);
-        ShowPasswordButton showPasswordButton = new ShowPasswordButton(passwordField);
-        GeneratePasswordButton generatePasswordButton = new GeneratePasswordButton(passwordField);
+    public App() {
+        super("Encrypter");
+        URL iconURL = App.class.getClassLoader().getResource("icon.png");
+        Image iconImage = Toolkit.getDefaultToolkit().createImage(iconURL);
+        setIconImage(iconImage);
+        setSize(1600 - 256 - 32, 960 - 64 - 32);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        addMenuBar();
+        addComponents();
+    }
 
-        EncryptButton encryptButton = new EncryptButton(jFrame, inputScrollPane, passwordField, outputHistoryPanel);
-        DecryptButton decryptButton = new DecryptButton(jFrame, inputScrollPane, passwordField, outputHistoryPanel);
+    private void addMenuBar() {
+        JMenuBar menuBar = new JMenuBar();
+        menuBar.add(new CustomMenu(
+                "Help Menu",
+                new NewFeaturesMenuItem(),
+                new FAQMenuItem(),
+                new ContactMenuItem()
+        ));
 
-        EncryptionSettingsPanel encryptionSettingsPanel = new EncryptionSettingsPanel();
+        menuBar.add(new CustomMenu(
+                "Advanced Options",
+                new AdvancedModeCheckBoxMenuItem()
+        ));
+        setJMenuBar(menuBar);
+    }
 
-        // ADD TO JFRAME
-        Container container = jFrame.getContentPane();
+    private void addComponents() {
+        Container container = getContentPane();
         GroupLayout layout = new GroupLayout(container);
-        container.setLayout(layout);
         layout.setAutoCreateGaps(true);
 
         GroupLayout.Group horizontalGroup = layout.createSequentialGroup()
                 .addGap(64)
                 .addGroup(layout.createParallelGroup()
-                        .addGroup(layout.createParallelGroup()
-                                .addComponent(inputTextLabel)
-                                .addComponent(inputScrollPane))
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(passwordFieldLabel)
-                                .addComponent(showPasswordButton)
-                                .addComponent(generatePasswordButton))
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(passwordField)
-                                .addGap(64)
-                                .addComponent(encryptButton)
-                                .addGap(64)
-                                .addComponent(decryptButton))
-                        .addComponent(encryptionSettingsPanel)
-                        .addComponent(outputHistoryPanel));
+                        .addComponent(USER_INPUT_PANEL)
+                        .addComponent(ADVANCED_SETTINGS_PANEL)
+                        .addComponent(OUTPUT_PANEL));
 
         GroupLayout.Group verticalGroup = layout.createSequentialGroup()
-                .addGroup(layout.createSequentialGroup()
-                        .addComponent(inputTextLabel)
-                        .addComponent(inputScrollPane))
-                .addGroup(layout.createParallelGroup()
-                        .addComponent(passwordFieldLabel)
-                        .addComponent(showPasswordButton)
-                        .addComponent(generatePasswordButton))
-                .addGroup(layout.createParallelGroup()
-                        .addComponent(passwordField)
-                        .addComponent(encryptButton)
-                        .addComponent(decryptButton))
-                .addComponent(encryptionSettingsPanel)
-                .addComponent(outputHistoryPanel);
+                .addComponent(USER_INPUT_PANEL)
+                .addComponent(ADVANCED_SETTINGS_PANEL)
+                .addComponent(OUTPUT_PANEL)
+                .addGap(32);
 
         layout.setHorizontalGroup(horizontalGroup);
         layout.setVerticalGroup(verticalGroup);
+        container.setLayout(layout);
     }
 }

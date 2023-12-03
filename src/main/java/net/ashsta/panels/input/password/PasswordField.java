@@ -1,7 +1,7 @@
-package net.ashsta.components;
+package net.ashsta.panels.input.password;
 
 import net.ashsta.Cosmetic;
-import net.ashsta.Encryption;
+import net.ashsta.encryption.Encryption;
 
 import javax.swing.*;
 import javax.swing.text.AbstractDocument;

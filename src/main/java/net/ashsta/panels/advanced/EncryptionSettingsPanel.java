@@ -1,16 +1,13 @@
-package net.ashsta.components;
+package net.ashsta.panels.advanced;
 
-import net.ashsta.Encryption;
-import net.ashsta.EncryptionSettings;
-import net.ashsta.interfaces.AdvancedComponent;
-import net.ashsta.menu.AdvancedModeCheckBoxMenuItem;
+import net.ashsta.components.CustomLabel;
+import net.ashsta.encryption.Encryption;
+import net.ashsta.encryption.EncryptionSettings;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class EncryptionSettingsPanel extends JPanel implements AdvancedComponent {
-
-    //TODO: Major issue with CBC producing random output, probably going to have to delete the encryption settings panel altogether
+public class EncryptionSettingsPanel extends JPanel {
 
     private static final Dimension SIZE = new Dimension(128 + 48, 32);
 
@@ -50,24 +47,10 @@ public class EncryptionSettingsPanel extends JPanel implements AdvancedComponent
 
         layout.setHorizontalGroup(horizontalGroup);
         layout.setVerticalGroup(verticalGroup);
-
-        AdvancedModeCheckBoxMenuItem.addAdvancedComponent(this);
-        setVisible(false);
     }
 
     @Override
-    public int getWidthExpansion() {
-        return 0;
-    }
-
-    @Override
-    public int getHeightExpansion() {
-        return getMaximumSize().height;
-    }
-
-    @Override
-    public void setEnabled(boolean state) {
-        setVisible(state);
+    public void setVisible(boolean state) {
         if (!state) {
             Encryption.setSettings(EncryptionSettings.DEFAULT);
             updateComboBoxes();

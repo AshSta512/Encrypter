@@ -1,4 +1,4 @@
-package net.ashsta;
+package net.ashsta.encryption;
 
 public record EncryptionSettings(Algorithm algorithm, Mode mode, Padding padding) {
 
@@ -36,12 +36,11 @@ public record EncryptionSettings(Algorithm algorithm, Mode mode, Padding padding
     }
 
     public enum Mode {
-        CBC,
         ECB;
 
         public static Mode[] getAlgorithmModes(Algorithm algorithm) {
             return switch (algorithm) {
-                case AES, DES -> new Mode[]{CBC, ECB};
+                case AES, DES -> new Mode[]{ECB};
             };
         }
 

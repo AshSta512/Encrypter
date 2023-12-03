@@ -1,4 +1,4 @@
-package net.ashsta;
+package net.ashsta.encryption;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;

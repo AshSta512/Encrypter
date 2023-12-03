@@ -1,11 +1,11 @@
 package net.ashsta.menu;
 
-import javax.swing.*;
+import net.ashsta.Encrypter;
 
 public class FAQMenuItem extends CustomTextMenuItem {
 
-    public FAQMenuItem(JFrame jFrame) {
-        super(jFrame,
+    public FAQMenuItem() {
+        super(Encrypter.getApp(),
                 "Frequently Asked Questions",
 
                 "<b>How to use the program:</b>",

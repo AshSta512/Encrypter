@@ -1,49 +1,27 @@
 package net.ashsta.menu;
 
+import net.ashsta.App;
 import net.ashsta.Cosmetic;
-import net.ashsta.interfaces.AdvancedComponent;
+import net.ashsta.Encrypter;
 
 import javax.swing.*;
-import java.util.HashSet;
-import java.util.Set;
 
 public class AdvancedModeCheckBoxMenuItem extends JCheckBoxMenuItem {
 
-    private static final Set<AdvancedComponent> ADVANCED_COMPONENTS = new HashSet<>();
-
-    public AdvancedModeCheckBoxMenuItem(JFrame jFrame) {
+    public AdvancedModeCheckBoxMenuItem() {
         setText("Advanced Mode");
         setFont(Cosmetic.MENU_BAR_FONT);
         addActionListener(e -> {
+            App app = Encrypter.getApp();
             boolean state = getState();
             JLabel jLabel = new JLabel("Are you sure you want to " + (state ? "enable" : "disable") + " advanced mode?");
             jLabel.setFont(Cosmetic.POPOUT_BOX_FONT);
-            int option = JOptionPane.showConfirmDialog(jFrame, jLabel, "Advanced Mode Confirmation", JOptionPane.YES_NO_OPTION);
+            int option = JOptionPane.showConfirmDialog(app, jLabel, "Advanced Mode Confirmation", JOptionPane.YES_NO_OPTION);
             if (option == JOptionPane.NO_OPTION) {
                 setState(!state);
                 return;
             }
-
-            int newWidth = jFrame.getWidth();
-            int newHeight = jFrame.getHeight();
-            if (state) {
-                for (AdvancedComponent component : ADVANCED_COMPONENTS) {
-                    newWidth += component.getWidthExpansion();
-                    newHeight += component.getHeightExpansion();
-                    component.setEnabled(true);
-                }
-            } else {
-                for (AdvancedComponent component : ADVANCED_COMPONENTS) {
-                    newWidth -= component.getWidthExpansion();
-                    newHeight -= component.getHeightExpansion();
-                    component.setEnabled(false);
-                }
-            }
-            jFrame.setSize(newWidth, newHeight);
+            app.getAdvancedSettingsPanel().setVisible(state);
         });
-    }
-
-    public static void addAdvancedComponent(AdvancedComponent component) {
-        ADVANCED_COMPONENTS.add(component);
     }
 }
