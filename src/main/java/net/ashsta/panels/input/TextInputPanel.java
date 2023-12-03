@@ -37,6 +37,7 @@ public class TextInputPanel extends JPanel {
 
     private void initializeTextArea() {
         TEXT_AREA.setFont(Cosmetic.DEFAULT_FONT);
+        TEXT_AREA.setForeground(Cosmetic.TEXT_BOX_TEXT_COLOR);
         TEXT_AREA.setBackground(Cosmetic.TEXT_BOX_BACKGROUND_COLOR);
         TEXT_AREA.setLineWrap(true);
         TEXT_AREA.setWrapStyleWord(true);

@@ -16,8 +16,9 @@ public class PasswordField extends JPasswordField {
 
     public PasswordField() {
         setMaximumSize(SIZE);
-        setBorder(Cosmetic.BORDER);
         setFont(Cosmetic.DEFAULT_FONT);
+        setForeground(Cosmetic.TEXT_BOX_TEXT_COLOR);
+        setBorder(Cosmetic.BORDER);
         setBackground(Cosmetic.TEXT_BOX_BACKGROUND_COLOR);
         ((AbstractDocument) getDocument()).setDocumentFilter(new CharacterLimitDocumentFilter());
     }

@@ -12,7 +12,7 @@ public class CustomLabel extends JLabel {
     public CustomLabel(String text, Component labelFor) {
         super(text);
         setFont(FONT);
-        setForeground(Cosmetic.DEFAULT_TEXT_COLOR);
+        setForeground(Cosmetic.APP_TEXT_COLOR);
         setLabelFor(labelFor);
     }
 }

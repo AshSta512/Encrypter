@@ -9,8 +9,8 @@ import java.awt.*;
 
 public class AppPanel extends JPanel {
 
-    private static final Color GRADIENT_COLOR_1 = Color.DARK_GRAY;
-    private static final Color GRADIENT_COLOR_2 = Color.BLACK;
+    private static final Color GRADIENT_COLOR_1 = new Color(75, 75, 75);
+    private static final Color GRADIENT_COLOR_2 = new Color(25, 25, 25);
 
     private final UserInputPanel USER_INPUT_PANEL = new UserInputPanel();
     private final AdvancedSettingsPanel ADVANCED_SETTINGS_PANEL = new AdvancedSettingsPanel();

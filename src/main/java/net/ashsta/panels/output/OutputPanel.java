@@ -94,6 +94,7 @@ public class OutputPanel extends JPanel {
 
     private void initializeInputTextArea() {
         INPUT_TEXT_AREA.setFont(OUTPUT_FONT);
+        INPUT_TEXT_AREA.setForeground(Cosmetic.TEXT_BOX_TEXT_COLOR);
         INPUT_TEXT_AREA.setBackground(Cosmetic.TEXT_BOX_BACKGROUND_COLOR);
         INPUT_TEXT_AREA.setEditable(false);
         INPUT_TEXT_AREA.setLineWrap(true);
@@ -111,6 +112,7 @@ public class OutputPanel extends JPanel {
     private void initializePasswordField() {
         PASSWORD_FIELD.setMaximumSize(new Dimension(256 + 128, 64));
         PASSWORD_FIELD.setFont(OUTPUT_FONT);
+        PASSWORD_FIELD.setForeground(Cosmetic.TEXT_BOX_TEXT_COLOR);
         PASSWORD_FIELD.setBackground(Cosmetic.TEXT_BOX_BACKGROUND_COLOR);
         PASSWORD_FIELD.setBorder(Cosmetic.BORDER);
         PASSWORD_FIELD.setEditable(false);
@@ -136,6 +138,7 @@ public class OutputPanel extends JPanel {
 
     private void initializeOutputTextArea() {
         OUTPUT_TEXT_AREA.setFont(OUTPUT_FONT);
+        OUTPUT_TEXT_AREA.setForeground(Cosmetic.TEXT_BOX_TEXT_COLOR);
         OUTPUT_TEXT_AREA.setBackground(Cosmetic.TEXT_BOX_BACKGROUND_COLOR);
         OUTPUT_TEXT_AREA.setEditable(false);
         OUTPUT_TEXT_AREA.setLineWrap(true);

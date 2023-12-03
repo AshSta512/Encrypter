@@ -15,8 +15,8 @@ public class EncryptButtonsPanel extends JPanel {
     private static final Font BUTTON_FONT = new Font("Default", Font.BOLD, 32);
     private static final Dimension BUTTON_SIZE = new Dimension(256 - 64, 128 - 32);
 
-    private static final Color ENCRYPT_BUTTON_COLOR = new Color(255, 0, 75);
-    private static final Color DECRYPT_BUTTON_COLOR = new Color(0, 255, 75);
+    private static final Color ENCRYPT_BUTTON_COLOR = new Color(255, 25, 75);
+    private static final Color DECRYPT_BUTTON_COLOR = new Color(25, 255, 75);
 
     public EncryptButtonsPanel() {
         setMaximumSize(PANEL_SIZE);

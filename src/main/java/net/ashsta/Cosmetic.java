@@ -14,7 +14,8 @@ public class Cosmetic {
     public static final Border BORDER = BorderFactory.createLineBorder(Color.black);
 
     public static final Color TEXT_BOX_BACKGROUND_COLOR = Color.LIGHT_GRAY;
-    public static final Color DEFAULT_TEXT_COLOR = Color.WHITE;
+    public static final Color TEXT_BOX_TEXT_COLOR = Color.BLACK;
+    public static final Color APP_TEXT_COLOR = Color.WHITE;
     public static final Color MENU_BAR_COLOR = Color.LIGHT_GRAY;
     public static final Color MENU_BAR_TEXT_COLOR = Color.BLACK;
 }
