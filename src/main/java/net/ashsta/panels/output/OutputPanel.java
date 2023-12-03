@@ -90,11 +90,15 @@ public class OutputPanel extends JPanel {
         setLayout(layout);
     }
 
-    private JScrollPane createInputScrollPane() {
+    private void initializeInputTextArea() {
         INPUT_TEXT_AREA.setFont(OUTPUT_FONT);
         INPUT_TEXT_AREA.setEditable(false);
         INPUT_TEXT_AREA.setLineWrap(true);
         INPUT_TEXT_AREA.setWrapStyleWord(true);
+    }
+
+    private JScrollPane createInputScrollPane() {
+        initializeInputTextArea();
         JScrollPane inputScrollPane = new JScrollPane(INPUT_TEXT_AREA);
         inputScrollPane.setMaximumSize(new Dimension(256 + 128, 256));
         inputScrollPane.setBorder(Cosmetic.BORDER);
@@ -108,11 +112,14 @@ public class OutputPanel extends JPanel {
         PASSWORD_FIELD.setEditable(false);
     }
 
-    private JPanel createEncryptionSettingsPanel() {
+    private void initializeEncryptionSettingsComboBoxes() {
         ENCRYPTION_SETTINGS_NAME.setEnabled(false);
         ENCRYPTION_SETTINGS_MODE.setEnabled(false);
         ENCRYPTION_SETTINGS_PADDING.setEnabled(false);
+    }
 
+    private JPanel createEncryptionSettingsPanel() {
+        initializeEncryptionSettingsComboBoxes();
         JPanel encryptionSettingsPanel = new JPanel();
         encryptionSettingsPanel.setMaximumSize(new Dimension(256 + 128, 32));
         encryptionSettingsPanel.add(ENCRYPTION_SETTINGS_NAME);
@@ -122,11 +129,15 @@ public class OutputPanel extends JPanel {
         return encryptionSettingsPanel;
     }
 
-    private JScrollPane createOutputScrollPane() {
+    private void initializeOutputTextArea() {
         OUTPUT_TEXT_AREA.setFont(OUTPUT_FONT);
         OUTPUT_TEXT_AREA.setEditable(false);
         OUTPUT_TEXT_AREA.setLineWrap(true);
         OUTPUT_TEXT_AREA.setWrapStyleWord(true);
+    }
+
+    private JScrollPane createOutputScrollPane() {
+        initializeOutputTextArea();
         JScrollPane outputScrollPane = new JScrollPane(OUTPUT_TEXT_AREA);
         outputScrollPane.setMaximumSize(new Dimension(256 + 128, 256));
         outputScrollPane.setBorder(Cosmetic.BORDER);
@@ -139,8 +150,6 @@ public class OutputPanel extends JPanel {
         if (size != 0 && newEntry.equals(HISTORY.get(size - 1)))
             return;
         HISTORY.add(newEntry);
-        // Index = size because we added to HISTORY after initializing the size variable, so size = new last index - 1
-        index = size;
         mostRecentEntry();
     }
 
