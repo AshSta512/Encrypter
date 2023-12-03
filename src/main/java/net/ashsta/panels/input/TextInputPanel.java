@@ -15,13 +15,7 @@ public class TextInputPanel extends JPanel {
     public TextInputPanel() {
         CustomLabel inputTextLabel = new CustomLabel("Text Input", this);
 
-        JScrollPane textInputScrollPane = new JScrollPane();
-        textInputScrollPane.setMaximumSize(SIZE);
-        textInputScrollPane.setBorder(Cosmetic.BORDER);
-        TEXT_AREA.setFont(Cosmetic.DEFAULT_FONT);
-        TEXT_AREA.setLineWrap(true);
-        TEXT_AREA.setWrapStyleWord(true);
-        textInputScrollPane.setViewportView(TEXT_AREA);
+        JScrollPane textInputScrollPane = createScrollPane();
 
         GroupLayout layout = new GroupLayout(this);
         layout.setAutoCreateGaps(true);
@@ -37,6 +31,21 @@ public class TextInputPanel extends JPanel {
         layout.setHorizontalGroup(horizontalGroup);
         layout.setVerticalGroup(verticalGroup);
         setLayout(layout);
+    }
+
+    private void initializeTextArea() {
+        TEXT_AREA.setFont(Cosmetic.DEFAULT_FONT);
+        TEXT_AREA.setLineWrap(true);
+        TEXT_AREA.setWrapStyleWord(true);
+    }
+
+    private JScrollPane createScrollPane() {
+        initializeTextArea();
+        JScrollPane textInputScrollPane = new JScrollPane();
+        textInputScrollPane.setMaximumSize(SIZE);
+        textInputScrollPane.setBorder(Cosmetic.BORDER);
+        textInputScrollPane.setViewportView(TEXT_AREA);
+        return textInputScrollPane;
     }
 
     public JTextArea getTextArea() {
