@@ -32,8 +32,8 @@ public class OutputHistoryButtonsPanel extends JPanel {
     }
 
     protected void updateHistoryButtons(int historySize, int index) {
-        // Disable previous output button if index = 0
-        PREVIOUS_OUTPUT_BUTTON.setEnabled(index != 0);
+        // Disable previous output button if index <= 0
+        PREVIOUS_OUTPUT_BUTTON.setEnabled(index > 0);
 
         // Disable next and most recent output buttons if index = array size - 1
         boolean hasNext = index != historySize - 1;
