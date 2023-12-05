@@ -31,6 +31,7 @@ public class GeneratePasswordButton extends JButton {
     }
 
     private void generatePassword(ConnectionFactory connectionFactory, JPasswordField passwordField) {
+        setEnabled(false);
         passwordField.setEditable(false);
         CompletableFuture.runAsync(() -> {
             try {
@@ -41,6 +42,7 @@ public class GeneratePasswordButton extends JButton {
                     String generatedPassword = receiveRequest(connection);
                     passwordField.setText(generatedPassword);
                     passwordField.setEditable(true);
+                    setEnabled(true);
                 }
             } catch (IOException | TimeoutException | InterruptedException | ExecutionException ex) {
                 ex.printStackTrace();
