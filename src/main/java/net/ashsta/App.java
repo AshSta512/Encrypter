@@ -31,7 +31,6 @@ public class App extends JFrame {
     public App() {
         super("Encrypter");
         addIcon();
-        //getContentPane().setBackground(Cosmetic.MAIN_BACKGROUND_COLOR);
         setSize(SIZE);
         setResizable(false);
         setLocationRelativeTo(null);
