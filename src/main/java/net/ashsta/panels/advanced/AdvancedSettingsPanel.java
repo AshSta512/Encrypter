@@ -1,13 +1,16 @@
 package net.ashsta.panels.advanced;
 
+import net.ashsta.panels.advanced.encryptionsettings.EncryptionSettingsPanel;
+
 import javax.swing.*;
+import java.awt.*;
 
 public class AdvancedSettingsPanel extends JPanel {
 
-    EncryptionSettingsPanel ENCRYPTION_SETTINGS_PANEL = new EncryptionSettingsPanel();
+    EncryptionSettingsPanel ENCRYPTION_SETTINGS_PANEL = new EncryptionSettingsPanel(false);
 
     public AdvancedSettingsPanel() {
-        setOpaque(false);
+        setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
 
         GroupLayout layout = new GroupLayout(this);
         layout.setAutoCreateGaps(true);
@@ -22,6 +25,7 @@ public class AdvancedSettingsPanel extends JPanel {
         layout.setVerticalGroup(verticalGroup);
         setLayout(layout);
 
+        // Hide panel since advanced settings are off by default
         super.setVisible(false);
     }
 

@@ -1,16 +1,16 @@
 package net.ashsta.panels;
 
 import net.ashsta.panels.advanced.AdvancedSettingsPanel;
-import net.ashsta.panels.input.UserInputPanel;
 import net.ashsta.panels.output.OutputPanel;
+import net.ashsta.panels.userinput.UserInputPanel;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class AppPanel extends JPanel {
 
-    private static final Color GRADIENT_COLOR_1 = new Color(75, 75, 75);
-    private static final Color GRADIENT_COLOR_2 = new Color(25, 25, 25);
+    private static final Color BACKGROUND_GRADIENT_COLOR_1 = new Color(75, 75, 75);
+    private static final Color BACKGROUND_GRADIENT_COLOR_2 = new Color(25, 25, 25);
 
     private final UserInputPanel USER_INPUT_PANEL = new UserInputPanel();
     private final AdvancedSettingsPanel ADVANCED_SETTINGS_PANEL = new AdvancedSettingsPanel();
@@ -29,8 +29,6 @@ public class AppPanel extends JPanel {
     }
 
     public AppPanel() {
-        setOpaque(false);
-
         GroupLayout layout = new GroupLayout(this);
         layout.setAutoCreateGaps(true);
 
@@ -39,9 +37,11 @@ public class AppPanel extends JPanel {
                 .addGroup(layout.createParallelGroup()
                         .addComponent(USER_INPUT_PANEL)
                         .addComponent(ADVANCED_SETTINGS_PANEL)
-                        .addComponent(OUTPUT_PANEL));
+                        .addComponent(OUTPUT_PANEL))
+                .addGap(64);
 
         GroupLayout.Group verticalGroup = layout.createSequentialGroup()
+                .addGap(16)
                 .addComponent(USER_INPUT_PANEL)
                 .addComponent(ADVANCED_SETTINGS_PANEL)
                 .addComponent(OUTPUT_PANEL)
@@ -59,7 +59,7 @@ public class AppPanel extends JPanel {
         graphics2D.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         int width = getWidth();
         int height = getHeight();
-        GradientPaint gradientPaint = new GradientPaint(0, 0, GRADIENT_COLOR_1, 0, height, GRADIENT_COLOR_2);
+        GradientPaint gradientPaint = new GradientPaint(0, 0, BACKGROUND_GRADIENT_COLOR_1, 0, height, BACKGROUND_GRADIENT_COLOR_2);
         graphics2D.setPaint(gradientPaint);
         graphics2D.fillRect(0, 0, width, height);
     }

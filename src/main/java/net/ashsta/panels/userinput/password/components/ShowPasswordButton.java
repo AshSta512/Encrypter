@@ -1,6 +1,4 @@
-package net.ashsta.panels.input.password;
-
-import net.ashsta.Cosmetic;
+package net.ashsta.panels.userinput.password.components;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,12 +6,9 @@ import java.awt.event.MouseEvent;
 
 public class ShowPasswordButton extends JButton {
 
-    private static final Dimension SIZE = new Dimension(64, 32);
-
     public ShowPasswordButton(JPasswordField passwordField) {
         super("Hold to Show Password");
-        setFont(Cosmetic.SMALL_BUTTON_FONT);
-        setMaximumSize(SIZE);
+        setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
         addMouseListener(new MouseListener(passwordField));
     }
 

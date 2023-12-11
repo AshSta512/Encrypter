@@ -1,24 +1,29 @@
 package net.ashsta.menu;
 
-import net.ashsta.Cosmetic;
+import net.ashsta.menu.items.AdvancedModeCheckBoxMenuItem;
+import net.ashsta.menu.items.ContactMenuItem;
+import net.ashsta.menu.items.FAQMenuItem;
+import net.ashsta.menu.items.NewChangesMenuItem;
 
 import javax.swing.*;
+import java.io.IOException;
 
 public class AppMenuBar extends JMenuBar {
 
     public AppMenuBar() {
-        setBorder(Cosmetic.BORDER);
-        setBackground(Cosmetic.MENU_BAR_COLOR);
-
+        add(Box.createHorizontalStrut(8));
         add(new CustomMenu(
                 "Help Menu",
-                new NewFeaturesMenuItem(),
+                new NewChangesMenuItem(),
                 new FAQMenuItem(),
                 new ContactMenuItem()
         ));
-        add(new CustomMenu(
-                "Advanced Options",
-                new AdvancedModeCheckBoxMenuItem()
-        ));
+        add(Box.createHorizontalStrut(16));
+        try {
+            add(new AdvancedModeCheckBoxMenuItem());
+            add(Box.createHorizontalStrut(512 + 256 + 128 + 64 + 16));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }

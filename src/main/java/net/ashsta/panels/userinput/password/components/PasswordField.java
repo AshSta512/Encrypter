@@ -1,6 +1,5 @@
-package net.ashsta.panels.input.password;
+package net.ashsta.panels.userinput.password.components;
 
-import net.ashsta.Cosmetic;
 import net.ashsta.encryption.Encryption;
 
 import javax.swing.*;
@@ -12,14 +11,10 @@ import java.awt.*;
 
 public class PasswordField extends JPasswordField {
 
-    private static final Dimension SIZE = new Dimension(512, 64);
-
     public PasswordField() {
-        setMaximumSize(SIZE);
-        setFont(Cosmetic.DEFAULT_FONT);
-        setForeground(Cosmetic.TEXT_BOX_TEXT_COLOR);
-        setBorder(Cosmetic.BORDER);
-        setBackground(Cosmetic.TEXT_BOX_BACKGROUND_COLOR);
+        setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
+        setPreferredSize(new Dimension(0, 64));
+        setEchoChar('•');
         ((AbstractDocument) getDocument()).setDocumentFilter(new CharacterLimitDocumentFilter());
     }
 
@@ -29,7 +24,7 @@ public class PasswordField extends JPasswordField {
 
         @Override
         public void replace(FilterBypass filterBypass, int offset, int deleteLength, String text, AttributeSet attributeSet) throws BadLocationException {
-            int overCharacterLimit = (filterBypass.getDocument().getLength() + text.length()) - (Encryption.getSettings().getKeySize() + deleteLength);
+            int overCharacterLimit = (filterBypass.getDocument().getLength() + text.length()) - (Encryption.getSettings().getKeyLength() + deleteLength);
             if (overCharacterLimit > 0)
                 text = text.substring(0, text.length() - overCharacterLimit);
             if (text.length() > 0 || deleteLength > 0)

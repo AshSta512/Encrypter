@@ -8,30 +8,30 @@ public record EncryptionSettings(Algorithm algorithm, Mode mode, Padding padding
         return algorithm + "/" + mode + "/" + padding;
     }
 
-    public int getKeySize() {
-        return algorithm.KEY_SIZE;
-    }
-
-    public Mode getDefaultMode() {
-        return algorithm.DEFAULT_MODE;
-    }
-
-    public Padding getDefaultPadding() {
-        return algorithm.DEFAULT_PADDING;
+    public int getKeyLength() {
+        return algorithm.KEY_LENGTH;
     }
 
     public enum Algorithm {
         AES(16, Mode.ECB, Padding.PKCS5Padding),
         DES(8, Mode.ECB, Padding.PKCS5Padding);
 
-        private final int KEY_SIZE;
+        private final int KEY_LENGTH;
         private final Mode DEFAULT_MODE;
         private final Padding DEFAULT_PADDING;
 
-        Algorithm(int keysize, Mode defaultMode, Padding defaultPadding) {
-            KEY_SIZE = keysize;
+        Algorithm(int keyLength, Mode defaultMode, Padding defaultPadding) {
+            KEY_LENGTH = keyLength;
             DEFAULT_MODE = defaultMode;
             DEFAULT_PADDING = defaultPadding;
+        }
+
+        public Mode getDefaultMode() {
+            return DEFAULT_MODE;
+        }
+
+        public Padding getDefaultPadding() {
+            return DEFAULT_PADDING;
         }
     }
 
@@ -43,10 +43,6 @@ public record EncryptionSettings(Algorithm algorithm, Mode mode, Padding padding
                 case AES, DES -> new Mode[]{ECB};
             };
         }
-
-        public static Mode[] getDefaultAlgorithmModes() {
-            return getAlgorithmModes(DEFAULT.algorithm);
-        }
     }
 
     public enum Padding {
@@ -56,10 +52,6 @@ public record EncryptionSettings(Algorithm algorithm, Mode mode, Padding padding
             return switch (algorithm) {
                 case AES, DES -> new Padding[]{PKCS5Padding};
             };
-        }
-
-        public static Padding[] getDefaultAlgorithmPaddings() {
-            return getAlgorithmPaddings(DEFAULT.algorithm);
         }
     }
 }

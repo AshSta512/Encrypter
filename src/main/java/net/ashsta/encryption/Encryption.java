@@ -11,6 +11,18 @@ public class Encryption {
 
     private static EncryptionSettings encryptionSettings = EncryptionSettings.DEFAULT;
 
+    public static void setAlgorithm(EncryptionSettings.Algorithm algorithm) {
+        encryptionSettings = new EncryptionSettings(algorithm, encryptionSettings.mode(), encryptionSettings.padding());
+    }
+
+    public static void setMode(EncryptionSettings.Mode mode) {
+        encryptionSettings = new EncryptionSettings(encryptionSettings.algorithm(), mode, encryptionSettings.padding());
+    }
+
+    public static void setPadding(EncryptionSettings.Padding padding) {
+        encryptionSettings = new EncryptionSettings(encryptionSettings.algorithm(), encryptionSettings.mode(), padding);
+    }
+
     public static void setSettings(EncryptionSettings settings) {
         encryptionSettings = settings;
     }
@@ -19,51 +31,40 @@ public class Encryption {
         return encryptionSettings;
     }
 
-    public static String encryptBase64(byte[] data, byte[] key) {
+    public static String encryptToBase64(byte[] data, byte[] key) {
         if (data == null || data.length == 0)
             return null;
-        byte[] encryptBytes = encrypt(data, key);
+        byte[] encryptBytes = performCipherAction(Cipher.ENCRYPT_MODE, data, key);
         return encryptBytes == null ? null : Base64.getEncoder().encodeToString(encryptBytes);
     }
 
-    public static String decryptBase64(String base64, byte[] key) {
+    public static String decryptFromBase64(String base64, byte[] key) {
         if (base64 == null || base64.length() == 0 || !BASE_64_PATTERN.matcher(base64).matches())
             return null;
         byte[] encryptedBytes = Base64.getDecoder().decode(base64);
-        if (encryptedBytes.length % encryptionSettings.getKeySize() != 0)
+        if (encryptedBytes.length % encryptionSettings.getKeyLength() != 0)
             return null;
-        byte[] decryptedBytes = decrypt(encryptedBytes, key);
+        byte[] decryptedBytes = performCipherAction(Cipher.DECRYPT_MODE, encryptedBytes, key);
         return decryptedBytes == null ? null : new String(decryptedBytes);
     }
 
-    private static byte[] encrypt(byte[] data, byte[] key) {
-        try {
-            Cipher cipher = Cipher.getInstance(encryptionSettings.getTransformation());
-            SecretKeySpec secretKeySpec = new SecretKeySpec(createFinalKey(key), encryptionSettings.algorithm().toString());
-            cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
-            return cipher.doFinal(data);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    private static byte[] decrypt(byte[] data, byte[] key) {
-        try {
-            Cipher cipher = Cipher.getInstance(encryptionSettings.getTransformation());
-            SecretKeySpec secretKeySpec = new SecretKeySpec(createFinalKey(key), encryptionSettings.algorithm().toString());
-            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
-            return cipher.doFinal(data);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
     private static byte[] createFinalKey(byte[] key) {
-        int keySizeInBytes = encryptionSettings.getKeySize();
-        if (key.length == keySizeInBytes)
+        int keyLengthInBytes = encryptionSettings.getKeyLength();
+        if (key.length == keyLengthInBytes)
             return key;
-        byte[] finalKey = new byte[keySizeInBytes];
-        System.arraycopy(key, 0, finalKey, 0, Math.min(key.length, keySizeInBytes));
+        byte[] finalKey = new byte[keyLengthInBytes];
+        System.arraycopy(key, 0, finalKey, 0, Math.min(key.length, keyLengthInBytes));
         return finalKey;
+    }
+
+    private static byte[] performCipherAction(int cipherMode, byte[] data, byte[] key) {
+        try {
+            Cipher cipher = Cipher.getInstance(encryptionSettings.getTransformation());
+            SecretKeySpec secretKeySpec = new SecretKeySpec(createFinalKey(key), encryptionSettings.algorithm().toString());
+            cipher.init(cipherMode, secretKeySpec);
+            return cipher.doFinal(data);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

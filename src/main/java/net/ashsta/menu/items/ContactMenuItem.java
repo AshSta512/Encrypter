@@ -1,12 +1,9 @@
-package net.ashsta.menu;
-
-import net.ashsta.Encrypter;
+package net.ashsta.menu.items;
 
 public class ContactMenuItem extends CustomTextMenuItem {
 
     public ContactMenuItem() {
-        super(Encrypter.getApp(),
-                "Contact Information",
+        super("Contact Information",
                 "Need more assistance? Contact the developer!",
                 "Email: staskoa@oregonstate.edu"
         );

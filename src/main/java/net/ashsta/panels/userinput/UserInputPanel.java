@@ -1,18 +1,19 @@
-package net.ashsta.panels.input;
+package net.ashsta.panels.userinput;
 
-import net.ashsta.Cosmetic;
-import net.ashsta.panels.input.password.PasswordPanel;
+import net.ashsta.panels.userinput.encryptbuttons.EncryptButtonsPanel;
+import net.ashsta.panels.userinput.password.PasswordPanel;
+import net.ashsta.panels.userinput.textinput.TextInputPanel;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class UserInputPanel extends JPanel {
 
     private final TextInputPanel TEXT_INPUT_PANEL = new TextInputPanel();
-    private final PasswordPanel PASSWORD_PANEL = new PasswordPanel();
+    private final PasswordPanel PASSWORD_PANEL = new PasswordPanel(false);
 
     public UserInputPanel() {
-        setFont(Cosmetic.DEFAULT_FONT);
-        setOpaque(false);
+        setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
 
         EncryptButtonsPanel encryptButtonsPanel = new EncryptButtonsPanel();
 
@@ -23,15 +24,17 @@ public class UserInputPanel extends JPanel {
                 .addComponent(TEXT_INPUT_PANEL)
                 .addGroup(layout.createSequentialGroup()
                         .addComponent(PASSWORD_PANEL)
-                        .addGap(64)
-                        .addComponent(encryptButtonsPanel));
+                        .addGap(128)
+                        .addComponent(encryptButtonsPanel)
+                        .addGap(128));
 
         GroupLayout.Group verticalGroup = layout.createSequentialGroup()
                 .addComponent(TEXT_INPUT_PANEL)
                 .addGroup(layout.createParallelGroup()
                         .addComponent(PASSWORD_PANEL)
-                        .addGap(64)
-                        .addComponent(encryptButtonsPanel));
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(16)
+                                .addComponent(encryptButtonsPanel)));
 
         layout.setHorizontalGroup(horizontalGroup);
         layout.setVerticalGroup(verticalGroup);
@@ -39,7 +42,7 @@ public class UserInputPanel extends JPanel {
     }
 
     public String getTextInput() {
-        return TEXT_INPUT_PANEL.getTextArea().getText();
+        return TEXT_INPUT_PANEL.getText();
     }
 
     public String getPassword() {

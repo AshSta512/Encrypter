@@ -1,0 +1,167 @@
+<synth>
+    <!-- Label -->
+    <style id="defaultLabel">
+        <font name="Dialog" size="20"/>
+        <state>
+            <color value="WHITE" type="FOREGROUND"/>
+        </state>
+    </style>
+
+    <style id="defaultPopoutBoxLabel">
+        <font name="Dialog" size="24"/>
+        <state>
+            <color value="BLACK" type="FOREGROUND"/>
+        </state>
+    </style>
+
+    <!-- Text Area -->
+    <style id="defaultTextArea">
+        <opaque value="true"/>
+        <insets top="4" bottom="4" left="4" right="4"/>
+        <font name="Dialog" size="24"/>
+        <state>
+            <color value="BLACK" type="FOREGROUND"/>
+            <color value="LIGHT_GRAY" type="BACKGROUND"/>
+        </state>
+        <state value="SELECTED">
+            <color value="#218cd9" type="TEXT_BACKGROUND"/>
+        </state>
+    </style>
+
+    <style id="defaultOutputTextArea" clone="defaultTextArea">
+        <font name="Dialog" size="20"/>
+    </style>
+
+    <!-- Button -->
+    <style id="defaultButton">
+        <opaque value="true"/>
+        <insets top="6" bottom="6" left="8" right="8"/>
+        <font name="Dialog" size="16" style="BOLD"/>
+        <state value="ENABLED">
+            <color value="WHITE" type="FOREGROUND"/>
+            <color value="#218cd9" type="BACKGROUND"/>
+        </state>
+        <state value="ENABLED and MOUSE_OVER">
+            <color value="BLACK" type="TEXT_FOREGROUND"/>
+        </state>
+        <state value="PRESSED">
+            <color value="LIGHT_GRAY" type="TEXT_FOREGROUND"/>
+        </state>
+        <state value="DISABLED">
+            <color value="LIGHT_GRAY" type="TEXT_FOREGROUND"/>
+            <color value="#194361" type="BACKGROUND"/>
+        </state>
+    </style>
+
+    <style id="defaultEncryptButton">
+        <opaque value="true"/>
+        <insets top="24" bottom="24" left="16" right="16"/>
+        <font name="Dialog" size="32" style="BOLD"/>
+        <state value="ENABLED">
+            <color value="#FF194B" type="BACKGROUND"/>
+        </state>
+        <state value="ENABLED and MOUSE_OVER">
+            <color value="BLACK" type="TEXT_FOREGROUND"/>
+        </state>
+    </style>
+
+    <style id="defaultDecryptButton" clone="defaultEncryptButton">
+        <state value="ENABLED">
+            <color value="#19FF4B" type="BACKGROUND"/>
+        </state>
+        <state value="ENABLED and MOUSE_OVER">
+            <color value="BLACK" type="TEXT_FOREGROUND"/>
+        </state>
+    </style>
+
+    <!-- Combo Box -->
+    <style id="defaultComboBox">
+        <opaque value="true"/>
+        <font name="Dialog" size="16"/>
+        <state value="ENABLED">
+            <color value="RED" type="FOREGROUND"/>
+            <color value="#218cd9" type="BACKGROUND"/>
+        </state>
+        <state value="DISABLED">
+            <color value="LIGHT_GRAY" type="TEXT_FOREGROUND"/>
+            <color value="#194361" type="BACKGROUND"/>
+        </state>
+    </style>
+
+    <style id="defaultComboBoxList">
+        <opaque value="true"/>
+        <state value="ENABLED">
+            <color value="WHITE" type="FOREGROUND"/>
+            <color value="#218cd9" type="BACKGROUND"/>
+        </state>
+        <state value="SELECTED">
+            <color value="BLACK" type="TEXT_FOREGROUND"/>
+        </state>
+        <state value="DISABLED">
+            <color value="LIGHT_GRAY" type="TEXT_FOREGROUND"/>
+            <color value="#194361" type="BACKGROUND"/>
+        </state>
+    </style>
+
+    <!-- Menu -->
+    <style id="defaultMenu">
+        <opaque value="true"/>
+        <font name="Dialog" size="20"/>
+        <state>
+            <color value="WHITE" type="FOREGROUND"/>
+            <color value="#218cd9" type="BACKGROUND"/>
+        </state>
+        <state value="SELECTED">
+            <color value="BLACK" type="TEXT_FOREGROUND"/>
+            <color value="#194361" type="BACKGROUND"/>
+        </state>
+    </style>
+
+    <style id="defaultMenuItem" clone="defaultMenu">
+        <opaque value="true"/>
+        <insets top="2" bottom="2" left="6" right="6"/>
+        <state>
+            <color value="WHITE" type="FOREGROUND"/>
+            <color value="#218cd9" type="BACKGROUND"/>
+        </state>
+        <state value="MOUSE_OVER">
+            <color value="BLACK" type="TEXT_FOREGROUND"/>
+            <color value="#194361" type="BACKGROUND"/>
+        </state>
+    </style>
+
+    <!-- Option Pane -->
+    <style id="defaultOptionPane">
+        <insets top="16" bottom="16" left="16" right="16"/>
+        <state>
+            <color value="BLACK" type="FOREGROUND"/>
+            <color value="BLACK" type="TEXT_FOREGROUND"/>
+            <color value="BLACK" type="BACKGROUND"/>
+            <color value="BLACK" type="TEXT_BACKGROUND"/>
+        </state>
+    </style>
+
+    <style id="defaultCheckBoxMenuItem" clone="defaultMenuItem"/>
+
+    <!-- Binding -->
+    <bind style="defaultLabel" type="region" key="Label"/>
+    <bind style="defaultPopoutBoxLabel" type="name" key="popoutBoxLabel"/>
+
+    <bind style="defaultTextArea" type="region" key="TextArea"/>
+    <bind style="defaultTextArea" type="region" key="PasswordField"/>
+    <bind style="defaultOutputTextArea" type="name" key="outputTextArea"/>
+
+    <bind style="defaultButton" type="region" key="Button"/>
+    <bind style="defaultEncryptButton" type="name" key="encryptButton"/>
+    <bind style="defaultDecryptButton" type="name" key="decryptButton"/>
+
+    <bind style="defaultComboBox" type="region" key="ComboBox"/>
+    <bind style="defaultComboBoxList" type="region" key="List"/>
+
+    <bind style="defaultMenu" type="region" key="MenuBar"/>
+    <bind style="defaultMenu" type="region" key="Menu"/>
+    <bind style="defaultMenuItem" type="region" key="MenuItem"/>
+    <bind style="defaultCheckBoxMenuItem" type="region" key="CheckBoxMenuItem"/>
+
+    <bind style="defaultOptionPane" type="region" key="OptionPane"/>
+</synth>

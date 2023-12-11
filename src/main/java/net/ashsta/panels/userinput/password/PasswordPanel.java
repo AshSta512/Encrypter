@@ -1,18 +1,21 @@
-package net.ashsta.panels.input.password;
+package net.ashsta.panels.userinput.password;
 
-import net.ashsta.components.CustomLabel;
+import net.ashsta.panels.userinput.password.components.GeneratePasswordButton;
+import net.ashsta.panels.userinput.password.components.PasswordField;
+import net.ashsta.panels.userinput.password.components.ShowPasswordButton;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class PasswordPanel extends JPanel {
 
-    private final JPasswordField PASSWORD_FIELD = new PasswordField();
+    private final PasswordField PASSWORD_FIELD = new PasswordField();
 
-    public PasswordPanel() {
-        setMaximumSize(new Dimension(256, 128));
-        setOpaque(false);
-        CustomLabel passwordFieldLabel = new CustomLabel("Password", PASSWORD_FIELD);
+    public PasswordPanel(boolean viewOnly) {
+        setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
+
+        JLabel passwordFieldLabel = new JLabel("Password");
+        passwordFieldLabel.setLabelFor(PASSWORD_FIELD);
         ShowPasswordButton showPasswordButton = new ShowPasswordButton(PASSWORD_FIELD);
         GeneratePasswordButton generatePasswordButton = new GeneratePasswordButton(PASSWORD_FIELD);
 
@@ -33,12 +36,17 @@ public class PasswordPanel extends JPanel {
                         .addComponent(generatePasswordButton))
                 .addComponent(PASSWORD_FIELD);
 
+        if (viewOnly) {
+            PASSWORD_FIELD.setEditable(false);
+            remove(generatePasswordButton);
+        }
+
         layout.setHorizontalGroup(horizontalGroup);
         layout.setVerticalGroup(verticalGroup);
         setLayout(layout);
     }
 
-    public JPasswordField getPasswordField() {
+    public PasswordField getPasswordField() {
         return PASSWORD_FIELD;
     }
 }
