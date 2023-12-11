@@ -13,7 +13,7 @@ public class AppMenuBar extends JMenuBar {
     public AppMenuBar() {
         add(Box.createHorizontalStrut(8));
         add(new CustomMenu(
-                "Help Menu",
+                "Help",
                 new NewChangesMenuItem(),
                 new FAQMenuItem(),
                 new ContactMenuItem()
