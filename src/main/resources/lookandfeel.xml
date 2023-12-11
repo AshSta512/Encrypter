@@ -112,7 +112,6 @@
             <color value="#218cd9" type="BACKGROUND"/>
         </state>
         <state value="SELECTED">
-            <color value="BLACK" type="TEXT_FOREGROUND"/>
             <color value="#194361" type="BACKGROUND"/>
         </state>
     </style>
@@ -125,7 +124,6 @@
             <color value="#218cd9" type="BACKGROUND"/>
         </state>
         <state value="MOUSE_OVER">
-            <color value="BLACK" type="TEXT_FOREGROUND"/>
             <color value="#194361" type="BACKGROUND"/>
         </state>
     </style>
