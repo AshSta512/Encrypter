@@ -18,17 +18,15 @@ public class TextInputPanel extends JPanel {
         GroupLayout layout = new GroupLayout(this);
         layout.setAutoCreateGaps(true);
 
-        GroupLayout.Group horizontalGroup = layout.createSequentialGroup()
+        layout.setHorizontalGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup()
                         .addComponent(inputTextLabel)
-                        .addComponent(textInputScrollPane));
+                        .addComponent(textInputScrollPane)));
 
-        GroupLayout.Group verticalGroup = layout.createSequentialGroup()
+        layout.setVerticalGroup(layout.createSequentialGroup()
                 .addComponent(inputTextLabel)
-                .addComponent(textInputScrollPane);
+                .addComponent(textInputScrollPane));
 
-        layout.setHorizontalGroup(horizontalGroup);
-        layout.setVerticalGroup(verticalGroup);
         setLayout(layout);
     }
 

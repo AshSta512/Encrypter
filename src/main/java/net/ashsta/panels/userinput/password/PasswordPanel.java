@@ -22,27 +22,25 @@ public class PasswordPanel extends JPanel {
         GroupLayout layout = new GroupLayout(this);
         layout.setAutoCreateGaps(true);
 
-        GroupLayout.Group horizontalGroup = layout.createParallelGroup()
+        layout.setHorizontalGroup(layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
                         .addComponent(passwordFieldLabel)
                         .addComponent(showPasswordButton)
                         .addComponent(generatePasswordButton))
-                .addComponent(PASSWORD_FIELD);
+                .addComponent(PASSWORD_FIELD));
 
-        GroupLayout.Group verticalGroup = layout.createSequentialGroup()
+        layout.setVerticalGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup()
                         .addComponent(passwordFieldLabel)
                         .addComponent(showPasswordButton)
                         .addComponent(generatePasswordButton))
-                .addComponent(PASSWORD_FIELD);
+                .addComponent(PASSWORD_FIELD));
 
         if (viewOnly) {
             PASSWORD_FIELD.setEditable(false);
             remove(generatePasswordButton);
         }
 
-        layout.setHorizontalGroup(horizontalGroup);
-        layout.setVerticalGroup(verticalGroup);
         setLayout(layout);
     }
 

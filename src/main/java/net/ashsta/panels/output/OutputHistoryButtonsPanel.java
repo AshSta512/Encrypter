@@ -19,18 +19,16 @@ public class OutputHistoryButtonsPanel extends JPanel {
         GroupLayout layout = new GroupLayout(this);
         layout.setAutoCreateGaps(true);
 
-        GroupLayout.Group horizontalGroup = layout.createSequentialGroup()
+        layout.setHorizontalGroup(layout.createSequentialGroup()
                 .addComponent(PREVIOUS_OUTPUT_BUTTON)
                 .addComponent(NEXT_OUTPUT_BUTTON)
-                .addComponent(MOST_RECENT_OUTPUT_BUTTON);
+                .addComponent(MOST_RECENT_OUTPUT_BUTTON));
 
-        GroupLayout.Group verticalGroup = layout.createParallelGroup()
+        layout.setVerticalGroup(layout.createParallelGroup()
                 .addComponent(PREVIOUS_OUTPUT_BUTTON)
                 .addComponent(NEXT_OUTPUT_BUTTON)
-                .addComponent(MOST_RECENT_OUTPUT_BUTTON);
+                .addComponent(MOST_RECENT_OUTPUT_BUTTON));
 
-        layout.setHorizontalGroup(horizontalGroup);
-        layout.setVerticalGroup(verticalGroup);
         setLayout(layout);
     }
 

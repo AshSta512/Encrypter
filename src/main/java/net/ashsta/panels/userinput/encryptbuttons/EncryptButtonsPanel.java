@@ -17,16 +17,14 @@ public class EncryptButtonsPanel extends JPanel {
         GroupLayout layout = new GroupLayout(this);
         layout.setAutoCreateGaps(true);
 
-        GroupLayout.Group horizontalGroup = layout.createSequentialGroup()
+        layout.setHorizontalGroup(layout.createSequentialGroup()
                 .addComponent(encryptButton)
-                .addComponent(decryptButton);
+                .addComponent(decryptButton));
 
-        GroupLayout.Group verticalGroup = layout.createParallelGroup()
+        layout.setVerticalGroup(layout.createParallelGroup()
                 .addComponent(encryptButton)
-                .addComponent(decryptButton);
+                .addComponent(decryptButton));
 
-        layout.setHorizontalGroup(horizontalGroup);
-        layout.setVerticalGroup(verticalGroup);
         setLayout(layout);
     }
 }

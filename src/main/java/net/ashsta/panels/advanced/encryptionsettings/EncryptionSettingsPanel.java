@@ -22,21 +22,20 @@ public class EncryptionSettingsPanel extends JPanel {
         encryptionSettingsPanelLabel.setLabelFor(this);
 
         GroupLayout layout = new GroupLayout(this);
-        setLayout(layout);
         layout.setAutoCreateGaps(true);
 
-        GroupLayout.Group horizontalGroup = layout.createSequentialGroup()
+        layout.setHorizontalGroup(layout.createSequentialGroup()
                 .addComponent(encryptionSettingsPanelLabel)
                 .addGap(16)
                 .addComponent(ALGORITHM_COMBO_BOX)
                 .addComponent(MODE_COMBO_BOX)
-                .addComponent(PADDING_COMBO_BOX);
+                .addComponent(PADDING_COMBO_BOX));
 
-        GroupLayout.Group verticalGroup = layout.createParallelGroup()
+        layout.setVerticalGroup(layout.createParallelGroup()
                 .addComponent(encryptionSettingsPanelLabel)
                 .addComponent(ALGORITHM_COMBO_BOX)
                 .addComponent(MODE_COMBO_BOX)
-                .addComponent(PADDING_COMBO_BOX);
+                .addComponent(PADDING_COMBO_BOX));
 
         if (viewOnly) {
             ALGORITHM_COMBO_BOX.setEnabled(false);
@@ -44,8 +43,7 @@ public class EncryptionSettingsPanel extends JPanel {
             PADDING_COMBO_BOX.setEnabled(false);
         }
 
-        layout.setHorizontalGroup(horizontalGroup);
-        layout.setVerticalGroup(verticalGroup);
+        setLayout(layout);
     }
 
     @Override

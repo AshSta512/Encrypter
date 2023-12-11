@@ -44,7 +44,7 @@ public class OutputPanel extends JPanel {
         GroupLayout layout = new GroupLayout(this);
         layout.setAutoCreateGaps(true);
 
-        GroupLayout.Group horizontalGroup = layout.createParallelGroup()
+        layout.setHorizontalGroup(layout.createParallelGroup()
                 .addComponent(outputPanelLabel)
                 .addComponent(OUTPUT_HISTORY_BUTTONS_PANEL)
                 .addGroup(layout.createSequentialGroup()
@@ -56,9 +56,9 @@ public class OutputPanel extends JPanel {
                                 .addComponent(ENCRYPTION_SETTINGS_PANEL))
                         .addGroup(layout.createParallelGroup()
                                 .addComponent(outputLabel)
-                                .addComponent(outputScrollPane)));
+                                .addComponent(outputScrollPane))));
 
-        GroupLayout.Group verticalGroup = layout.createSequentialGroup()
+        layout.setVerticalGroup(layout.createSequentialGroup()
                 .addComponent(outputPanelLabel)
                 .addComponent(OUTPUT_HISTORY_BUTTONS_PANEL)
                 .addGroup(layout.createParallelGroup()
@@ -71,10 +71,8 @@ public class OutputPanel extends JPanel {
                                 .addGap(128))
                         .addGroup(layout.createSequentialGroup()
                                 .addComponent(outputLabel)
-                                .addComponent(outputScrollPane)));
+                                .addComponent(outputScrollPane))));
 
-        layout.setHorizontalGroup(horizontalGroup);
-        layout.setVerticalGroup(verticalGroup);
         setLayout(layout);
     }
 

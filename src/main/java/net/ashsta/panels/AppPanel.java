@@ -32,23 +32,21 @@ public class AppPanel extends JPanel {
         GroupLayout layout = new GroupLayout(this);
         layout.setAutoCreateGaps(true);
 
-        GroupLayout.Group horizontalGroup = layout.createSequentialGroup()
+        layout.setHorizontalGroup(layout.createSequentialGroup()
                 .addGap(64)
                 .addGroup(layout.createParallelGroup()
                         .addComponent(USER_INPUT_PANEL)
                         .addComponent(ADVANCED_SETTINGS_PANEL)
                         .addComponent(OUTPUT_PANEL))
-                .addGap(64);
+                .addGap(64));
 
-        GroupLayout.Group verticalGroup = layout.createSequentialGroup()
+        layout.setVerticalGroup(layout.createSequentialGroup()
                 .addGap(16)
                 .addComponent(USER_INPUT_PANEL)
                 .addComponent(ADVANCED_SETTINGS_PANEL)
                 .addComponent(OUTPUT_PANEL)
-                .addGap(32);
+                .addGap(32));
 
-        layout.setHorizontalGroup(horizontalGroup);
-        layout.setVerticalGroup(verticalGroup);
         setLayout(layout);
     }
 

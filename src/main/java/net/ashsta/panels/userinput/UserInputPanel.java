@@ -20,24 +20,22 @@ public class UserInputPanel extends JPanel {
         GroupLayout layout = new GroupLayout(this);
         layout.setAutoCreateGaps(true);
 
-        GroupLayout.Group horizontalGroup = layout.createParallelGroup()
+        layout.setHorizontalGroup(layout.createParallelGroup()
                 .addComponent(TEXT_INPUT_PANEL)
                 .addGroup(layout.createSequentialGroup()
                         .addComponent(PASSWORD_PANEL)
                         .addGap(128)
                         .addComponent(encryptButtonsPanel)
-                        .addGap(128));
+                        .addGap(128)));
 
-        GroupLayout.Group verticalGroup = layout.createSequentialGroup()
+        layout.setVerticalGroup(layout.createSequentialGroup()
                 .addComponent(TEXT_INPUT_PANEL)
                 .addGroup(layout.createParallelGroup()
                         .addComponent(PASSWORD_PANEL)
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(16)
-                                .addComponent(encryptButtonsPanel)));
+                                .addComponent(encryptButtonsPanel))));
 
-        layout.setHorizontalGroup(horizontalGroup);
-        layout.setVerticalGroup(verticalGroup);
         setLayout(layout);
     }
 
