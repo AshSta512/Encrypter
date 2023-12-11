@@ -10,7 +10,7 @@ public class OutputTextPanel extends JPanel {
     private final OutputScrollPane OUTPUT_SCROLL_PANE = new OutputScrollPane();
 
     public OutputTextPanel(String label) {
-        setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
+        setMaximumSize(new Dimension(512, 512 - 128));
 
         JLabel customLabel = new JLabel(label);
         customLabel.setLabelFor(OUTPUT_SCROLL_PANE);

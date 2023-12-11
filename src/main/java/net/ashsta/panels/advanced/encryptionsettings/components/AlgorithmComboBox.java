@@ -12,7 +12,7 @@ public class AlgorithmComboBox extends JComboBox<EncryptionSettings.Algorithm> {
     public AlgorithmComboBox(EncryptionSettingsPanel encryptionSettingsPanel) {
         super(EncryptionSettings.Algorithm.values());
         setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
-        setPreferredSize(new Dimension(512, 0));
+        setPreferredSize(new Dimension(256 + 32, 32));
 
         // Sets current item to default algorithm
         setSelectedItem(EncryptionSettings.DEFAULT.algorithm());

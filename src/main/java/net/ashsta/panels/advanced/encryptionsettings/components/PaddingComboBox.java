@@ -11,7 +11,7 @@ public class PaddingComboBox extends JComboBox<EncryptionSettings.Padding> {
     public PaddingComboBox() {
         super(EncryptionSettings.Padding.getAlgorithmPaddings(EncryptionSettings.DEFAULT.algorithm()));
         setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
-        setPreferredSize(new Dimension(512, 0));
+        setPreferredSize(new Dimension(512 - 128, 32));
         // Sets current item to default algorithm padding
         setSelectedItem(EncryptionSettings.DEFAULT.algorithm().getDefaultPadding());
         // Updates encryption padding when a new padding is selected

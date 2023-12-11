@@ -11,7 +11,7 @@ public class ModeComboBox extends JComboBox<EncryptionSettings.Mode> {
     public ModeComboBox() {
         super(EncryptionSettings.Mode.getAlgorithmModes(EncryptionSettings.DEFAULT.algorithm()));
         setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
-        setPreferredSize(new Dimension(512, 0));
+        setPreferredSize(new Dimension(256 + 32, 32));
         // Sets current item to default algorithm mode
         setSelectedItem(EncryptionSettings.DEFAULT.algorithm().getDefaultMode());
         // Updates encryption mode when a new mode is selected
