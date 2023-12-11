@@ -13,10 +13,10 @@ import java.util.List;
 public class OutputPanel extends JPanel {
 
     private final OutputHistoryButtonsPanel OUTPUT_HISTORY_BUTTONS_PANEL = new OutputHistoryButtonsPanel(this);
-    private final JTextArea INPUT_TEXT_AREA = new JTextArea();
+    private final OutputTextPanel INPUT_TEXT_PANEL = new OutputTextPanel("Input");
     private final PasswordPanel PASSWORD_PANEL = new PasswordPanel(true);
     private final EncryptionSettingsPanel ENCRYPTION_SETTINGS_PANEL = new EncryptionSettingsPanel(true);
-    private final JTextArea OUTPUT_TEXT_AREA = new JTextArea();
+    private final OutputTextPanel OUTPUT_TEXT_PANEL = new OutputTextPanel("Output");
 
     private final List<Entry> HISTORY = new ArrayList<>();
     private int index = -1;
@@ -29,18 +29,6 @@ public class OutputPanel extends JPanel {
 
         OUTPUT_HISTORY_BUTTONS_PANEL.updateHistoryButtons(HISTORY.size(), index);
 
-        initializeTextArea(INPUT_TEXT_AREA);
-        JScrollPane inputScrollPane = new JScrollPane(INPUT_TEXT_AREA);
-        inputScrollPane.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
-        JLabel inputLabel = new JLabel("Input History");
-        inputLabel.setLabelFor(inputScrollPane);
-
-        initializeTextArea(OUTPUT_TEXT_AREA);
-        JScrollPane outputScrollPane = new JScrollPane(OUTPUT_TEXT_AREA);
-        outputScrollPane.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
-        JLabel outputLabel = new JLabel("Output History");
-        outputLabel.setLabelFor(outputScrollPane);
-
         GroupLayout layout = new GroupLayout(this);
         layout.setAutoCreateGaps(true);
 
@@ -48,39 +36,24 @@ public class OutputPanel extends JPanel {
                 .addComponent(outputPanelLabel)
                 .addComponent(OUTPUT_HISTORY_BUTTONS_PANEL)
                 .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup()
-                                .addComponent(inputLabel)
-                                .addComponent(inputScrollPane))
+                        .addComponent(INPUT_TEXT_PANEL)
                         .addGroup(layout.createParallelGroup()
                                 .addComponent(PASSWORD_PANEL)
                                 .addComponent(ENCRYPTION_SETTINGS_PANEL))
-                        .addGroup(layout.createParallelGroup()
-                                .addComponent(outputLabel)
-                                .addComponent(outputScrollPane))));
+                        .addComponent(OUTPUT_TEXT_PANEL)));
 
         layout.setVerticalGroup(layout.createSequentialGroup()
                 .addComponent(outputPanelLabel)
                 .addComponent(OUTPUT_HISTORY_BUTTONS_PANEL)
                 .addGroup(layout.createParallelGroup()
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(inputLabel)
-                                .addComponent(inputScrollPane))
+                        .addComponent(INPUT_TEXT_PANEL)
                         .addGroup(layout.createSequentialGroup()
                                 .addComponent(PASSWORD_PANEL)
                                 .addComponent(ENCRYPTION_SETTINGS_PANEL)
                                 .addGap(128))
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(outputLabel)
-                                .addComponent(outputScrollPane))));
+                        .addComponent(OUTPUT_TEXT_PANEL)));
 
         setLayout(layout);
-    }
-
-    private void initializeTextArea(JTextArea textArea) {
-        textArea.setName("outputTextArea");
-        textArea.setEditable(false);
-        textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true);
     }
 
     public void newOutput(String input, String password, String output) {
@@ -94,10 +67,10 @@ public class OutputPanel extends JPanel {
     }
 
     private void setEntry(Entry entry) {
-        INPUT_TEXT_AREA.setText(entry.input);
+        INPUT_TEXT_PANEL.getTextArea().setText(entry.input);
         PASSWORD_PANEL.getPasswordField().setText(entry.password);
         ENCRYPTION_SETTINGS_PANEL.updateComboBoxes();
-        OUTPUT_TEXT_AREA.setText(entry.output);
+        OUTPUT_TEXT_PANEL.getTextArea().setText(entry.output);
     }
 
     private void setEntry(int index) {
