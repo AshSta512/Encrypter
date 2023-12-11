@@ -19,7 +19,6 @@ public class OutputPanel extends JPanel {
     private final JTextArea OUTPUT_TEXT_AREA = new JTextArea();
 
     private final List<Entry> HISTORY = new ArrayList<>();
-
     private int index = -1;
 
     public OutputPanel() {
@@ -89,6 +88,7 @@ public class OutputPanel extends JPanel {
     public void newOutput(String input, String password, String output) {
         Entry newEntry = new Entry(input, password, output, Encryption.getSettings());
         int size = HISTORY.size();
+        // Return if newEntry = last entry
         if (size != 0 && newEntry.equals(HISTORY.get(size - 1)))
             return;
         HISTORY.add(newEntry);
