@@ -69,7 +69,7 @@ public class OutputPanel extends JPanel {
     private void setEntry(Entry entry) {
         INPUT_TEXT_PANEL.getTextArea().setText(entry.input);
         PASSWORD_PANEL.getPasswordField().setText(entry.password);
-        ENCRYPTION_SETTINGS_PANEL.updateComboBoxes();
+        ENCRYPTION_SETTINGS_PANEL.updateComboBoxes(entry.encryptionSettings);
         OUTPUT_TEXT_PANEL.getTextArea().setText(entry.output);
     }
 

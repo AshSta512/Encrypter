@@ -50,12 +50,11 @@ public class EncryptionSettingsPanel extends JPanel {
     public void setVisible(boolean state) {
         if (!state) {
             Encryption.setSettings(EncryptionSettings.DEFAULT);
-            updateComboBoxes();
+            updateComboBoxes(EncryptionSettings.DEFAULT);
         }
     }
 
-    public void updateComboBoxes() {
-        EncryptionSettings encryptionSettings = Encryption.getSettings();
+    public void updateComboBoxes(EncryptionSettings encryptionSettings) {
         ALGORITHM_COMBO_BOX.setSelectedItem(encryptionSettings.algorithm());
         MODE_COMBO_BOX.update(encryptionSettings.algorithm());
         PADDING_COMBO_BOX.update(encryptionSettings.algorithm());

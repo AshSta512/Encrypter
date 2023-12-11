@@ -21,7 +21,7 @@ public class AlgorithmComboBox extends JComboBox<EncryptionSettings.Algorithm> {
         addActionListener(e -> {
             EncryptionSettings.Algorithm algorithm = (EncryptionSettings.Algorithm) getSelectedItem();
             Encryption.setAlgorithm(algorithm);
-            encryptionSettingsPanel.updateComboBoxes();
+            encryptionSettingsPanel.updateComboBoxes(Encryption.getSettings());
         });
     }
 }
