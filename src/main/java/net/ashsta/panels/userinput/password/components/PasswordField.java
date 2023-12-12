@@ -15,6 +15,7 @@ public class PasswordField extends JPasswordField {
         setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
         setPreferredSize(new Dimension(0, 64));
         setEchoChar('•');
+        // Setup prevention measures for going over maximum password length
         ((AbstractDocument) getDocument()).setDocumentFilter(new CharacterLimitDocumentFilter());
     }
 
